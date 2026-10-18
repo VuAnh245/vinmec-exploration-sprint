@@ -1,4 +1,4 @@
-# Dàn ý slide — chưa phải slides.pdf
+# Dàn ý slide (chưa phải slides.pdf)
 
 Xuất PDF tối đa 10 slide tại thư mục gốc sau khi có bằng chứng. Đây là dàn ý gợi ý.
 

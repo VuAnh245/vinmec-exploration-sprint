@@ -1,4 +1,4 @@
-# Giữ LF trong repo, khớp .editorconfig
+# Giữ LF trong repo
 * text=auto eol=lf
 *.pdf binary
 *.png binary

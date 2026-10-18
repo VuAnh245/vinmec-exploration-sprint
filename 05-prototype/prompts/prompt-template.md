@@ -1,4 +1,4 @@
-# Hồ sơ prompt — chưa dùng
+# Hồ sơ prompt (chưa dùng)
 
 - ID / phiên bản: [CHƯA ĐIỀN]
 - Model / cấu hình thực tế nếu có: [CHƯA ĐIỀN]

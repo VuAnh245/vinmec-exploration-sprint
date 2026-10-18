@@ -1,6 +1,6 @@
 # Kế hoạch thử người dùng
 
-Trạng thái: CHƯA THỰC HIỆN. Cần 2–3 người theo đề; có thể mời lại người đã phỏng vấn, ghi nhận ảnh hưởng của sự quen thuộc.
+Trạng thái: CHƯA THỰC HIỆN. Cần 2-3 người theo đề; có thể mời lại người đã phỏng vấn, ghi nhận ảnh hưởng của sự quen thuộc.
 
 - Phiên bản prototype: [CHƯA ĐIỀN]
 - Nhóm người dùng và cách mời: [CHƯA ĐIỀN]
