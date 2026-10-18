@@ -58,4 +58,3 @@ Commit: `<loại>(<phạm vi>): <mô tả ngắn>`, với loại là `docs`, `re
 - Phân biệt quan sát, diễn giải, giả thuyết và dữ liệu mô phỏng.
 - Cỡ mẫu nhỏ phục vụ khám phá; không đại diện cho toàn bộ người bệnh Vinmec.
 
-Nguồn yêu cầu: [Đề ứng tuyển](https://docs.google.com/document/d/1f2XCxK1NnLgVlRF2VGL0dtoxBSOKcls6/view), nội dung được đọc ngày 17/10/2026. Chưa thấy rubric điểm chi tiết trong nội dung đã đọc.
