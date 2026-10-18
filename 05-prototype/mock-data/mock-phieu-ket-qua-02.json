@@ -1,0 +1,17 @@
+{
+  "nhan": "DỮ LIỆU MÔ PHỎNG, không phải kết quả của người thật, khoảng tham chiếu chỉ dùng để thử giao diện",
+  "ten_hien_thi": "Phiếu 02: Tổng phân tích tế bào máu (mô phỏng)",
+  "loai_phieu": "Tổng phân tích tế bào máu ngoại vi",
+  "co_so": "Phòng khám mô phỏng",
+  "ghi_chu_phieu": "H: cao hơn khoảng tham chiếu; L: thấp hơn khoảng tham chiếu",
+  "chi_so": [
+    {"ma": "WBC", "ten": "Số lượng bạch cầu", "ket_qua": 11.2, "don_vi": "G/L", "khoang_tham_chieu": "4.0 - 10.0", "co": "H"},
+    {"ma": "NEUT%", "ten": "Tỷ lệ bạch cầu trung tính", "ket_qua": 72, "don_vi": "%", "khoang_tham_chieu": "40 - 70", "co": "H"},
+    {"ma": "LYM%", "ten": "Tỷ lệ bạch cầu lympho", "ket_qua": 21, "don_vi": "%", "khoang_tham_chieu": "20 - 40", "co": ""},
+    {"ma": "RBC", "ten": "Số lượng hồng cầu", "ket_qua": 4.6, "don_vi": "T/L", "khoang_tham_chieu": "4.2 - 5.4", "co": ""},
+    {"ma": "HGB", "ten": "Huyết sắc tố", "ket_qua": 128, "don_vi": "g/L", "khoang_tham_chieu": "120 - 160", "co": ""},
+    {"ma": "HCT", "ten": "Hematocrit", "ket_qua": 0.39, "don_vi": "L/L", "khoang_tham_chieu": "0.36 - 0.48", "co": ""},
+    {"ma": "MCV", "ten": "Thể tích trung bình hồng cầu", "ket_qua": 86, "don_vi": "fL", "khoang_tham_chieu": "80 - 100", "co": ""},
+    {"ma": "PLT", "ten": "Số lượng tiểu cầu", "ket_qua": 145, "don_vi": "G/L", "khoang_tham_chieu": "150 - 400", "co": "L"}
+  ]
+}

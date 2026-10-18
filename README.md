@@ -3,7 +3,7 @@
 > TRẠNG THÁI: KHUNG LÀM VIỆC, CHƯA PHẢI BÀI NỘP HOÀN CHỈNH.
 > Các ô [CHƯA ĐIỀN] và các file mẫu không phải bằng chứng đã thu thập.
 
-- Họ tên / khóa: [CHƯA ĐIỀN]
+- Họ tên / khóa: Vũ Xuân Anh, K3
 - Khoảnh khắc duy nhất được chọn: Nhận kết quả, từ lúc người bệnh biết đã có kết quả xét nghiệm hoặc chẩn đoán hình ảnh đến lúc họ biết cần làm gì tiếp về mặt dịch vụ.
 - Nhóm người dùng: [CHƯA ĐIỀN]
 - Need statement: [CHƯA ĐIỀN]
@@ -20,7 +20,7 @@
 | Hành trình | [Journey map](02-journey-map/journey-map.md) |
 | Nhu cầu và bằng chứng | [Need statement](03-need-statement/need-statement.md) |
 | Nghiên cứu quốc tế | [Ba best practice và nguồn](04-best-practice/best-practice.md) |
-| Prototype | [Hướng dẫn và thiết kế](05-prototype/README.md), [Prompt](05-prototype/prompts/prompt-template.md) |
+| Prototype | [Hướng dẫn và thiết kế](05-prototype/README.md), [Prompt PR01](05-prototype/prompts/PR01-giai-thich-phieu-v1.md) |
 | Thử nghiệm và điều chỉnh | [Kế hoạch thử](05-prototype/user-testing/test-plan.md), [U01](05-prototype/user-testing/U01.md), [U02](05-prototype/user-testing/U02.md), [U03](05-prototype/user-testing/U03.md), [Tổng hợp và thay đổi](05-prototype/user-testing/findings.md) |
 | Rủi ro và đạo đức | [Rủi ro và quản lý dữ liệu](06-rui-ro-dao-duc/risk-register.md), [Chuyển tuyến khẩn cấp](06-rui-ro-dao-duc/escalation.md) |
 | Coach plan | [Kế hoạch một trang](07-coach-plan/coach-plan.md) |
@@ -36,6 +36,11 @@ Khung repo và biểu mẫu ban đầu được ChatGPT hỗ trợ tạo ngày 1
 | Khung repo và biểu mẫu | ChatGPT; không ghi model khi chưa xác minh | Tổ chức file, câu hỏi gợi ý, checklist | Ứng viên cần đọc và đối chiếu đề trước khi dùng | CHỜ RÀ SOÁT |
 | Quy ước đặt tên, `.gitattributes`, tinh gọn cấu trúc repo | Claude Code, Claude Opus 5.5 | Đề xuất quy ước tên file, mã P/U, prompt, commit; gộp các file trùng ý theo cấu trúc đề | Ứng viên duyệt trước khi commit | ĐÃ DUYỆT |
 | `01-phong-van/interview-guide.md` v1, `myvinmec-observation.md`, phiếu P01-P03 | Claude Code, Claude Opus 5.5 | Soạn câu hỏi theo khoảnh khắc "Nhận kết quả", lời xin đồng ý, danh sách tác vụ quan sát O1-O9, mẫu phiếu có dòng thời gian | Ứng viên đọc, chỉnh lời theo cách nói của mình trước khi phỏng vấn | CHỜ RÀ SOÁT |
+| `05-prototype/` proto-v1: `app.py`, `guard.py`, test, prompt PR01, 2 phiếu mô phỏng | Claude Code, Claude Opus 5.5 | Viết code giao diện và hai lớp chặn, soạn system prompt, tạo dữ liệu mô phỏng, viết 27 test | Chạy test tự động (27/27 đạt); ứng viên chạy app với API key và đọc lại prompt trước khi cho người thử | CHỜ RÀ SOÁT |
+| `04-best-practice/best-practice.md` | Claude Code, Claude Opus 5.5 | Tìm và mở nguồn, tóm tắt số liệu, đề xuất bài học cho Vinmec | Ứng viên mở lại 3 nguồn và bài gốc trên JAMA Network Open để đối chiếu số liệu | CHỜ RÀ SOÁT |
+| `06-rui-ro-dao-duc/risk-register.md`, `escalation.md` | Claude Code, Claude Opus 5.5 | Lập danh mục rủi ro RR01-RR06 gắn với code, bảng quản lý dữ liệu, thông điệp chuyển tuyến | Ứng viên xác minh số tổng đài trong app, điền thời điểm xóa ghi chép thô | CHỜ RÀ SOÁT |
+| `05-prototype/user-testing/test-plan.md`, phiếu U01-U03 | Claude Code, Claude Opus 5.5 | Soạn 3 tác vụ thử, tiêu chí, chỉ số, lời mở đầu, câu hỏi sau phiên | Ứng viên đọc thử lời mở đầu và chạy thử 3 tác vụ trước phiên đầu | CHỜ RÀ SOÁT |
+| `07-coach-plan/coach-plan.md` | Claude Code, Claude Opus 5.5 | Soạn lịch theo khung 6 tuần, cách gỡ vướng, kiểm tra chất lượng | Ứng viên thêm ví dụ thật từ AI20K và chỉnh theo cách mình sẽ làm | CHỜ RÀ SOÁT |
 
 Bổ sung từng phần phát sinh. Không dùng AI để giả lời phỏng vấn hoặc kết quả người dùng. Không đưa thông tin sức khỏe/cá nhân vào prompt. Phân biệt AI hỗ trợ làm bài với chức năng AI của prototype.
 

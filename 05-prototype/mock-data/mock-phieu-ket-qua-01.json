@@ -1,0 +1,18 @@
+{
+  "nhan": "DỮ LIỆU MÔ PHỎNG, không phải kết quả của người thật, khoảng tham chiếu chỉ dùng để thử giao diện",
+  "ten_hien_thi": "Phiếu 01: Sinh hóa máu (mô phỏng)",
+  "loai_phieu": "Xét nghiệm sinh hóa máu",
+  "co_so": "Phòng khám mô phỏng",
+  "ghi_chu_phieu": "H: cao hơn khoảng tham chiếu; L: thấp hơn khoảng tham chiếu",
+  "chi_so": [
+    {"ma": "GLU", "ten": "Glucose (đường huyết lúc đói)", "ket_qua": 6.4, "don_vi": "mmol/L", "khoang_tham_chieu": "3.9 - 6.1", "co": "H"},
+    {"ma": "CHOL", "ten": "Cholesterol toàn phần", "ket_qua": 5.9, "don_vi": "mmol/L", "khoang_tham_chieu": "< 5.2", "co": "H"},
+    {"ma": "TG", "ten": "Triglycerid", "ket_qua": 1.6, "don_vi": "mmol/L", "khoang_tham_chieu": "< 1.7", "co": ""},
+    {"ma": "HDL-C", "ten": "HDL Cholesterol", "ket_qua": 1.1, "don_vi": "mmol/L", "khoang_tham_chieu": "> 0.9", "co": ""},
+    {"ma": "LDL-C", "ten": "LDL Cholesterol", "ket_qua": 3.9, "don_vi": "mmol/L", "khoang_tham_chieu": "< 3.4", "co": "H"},
+    {"ma": "CREA", "ten": "Creatinin", "ket_qua": 82, "don_vi": "µmol/L", "khoang_tham_chieu": "62 - 106", "co": ""},
+    {"ma": "ALT", "ten": "ALT (GPT)", "ket_qua": 28, "don_vi": "U/L", "khoang_tham_chieu": "< 40", "co": ""},
+    {"ma": "AST", "ten": "AST (GOT)", "ket_qua": 25, "don_vi": "U/L", "khoang_tham_chieu": "< 37", "co": ""},
+    {"ma": "URIC", "ten": "Acid uric", "ket_qua": 380, "don_vi": "µmol/L", "khoang_tham_chieu": "202 - 416", "co": ""}
+  ]
+}
