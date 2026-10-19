@@ -10,6 +10,7 @@ Trạng thái: CHƯA THỬ VỚI NGƯỜI DÙNG. Đã có một lần điều ch
 | Ngày | Bằng chứng dẫn tới sửa | Trước | Sau | File/commit/version | Kiểm chứng lại và kết quả |
 |---|---|---|---|---|---|
 | 19/10/2026 | Kiểm thử tìm kiếm trên MyVinmec: 6/7 lượt không có kết quả, GLU ra 2 bài lệch ý, một kết quả mở sai bài; app đã có trợ lý AI và nhiều kênh hỗ trợ (O1, O6, O9). Need statement đổi theo | proto-v1: AI tự giải thích phiếu (PR01); một số tổng đài chung | proto-v2: AI chọn bài bác sĩ Vinmec đã viết và dẫn link (PR02); lối ra dịch vụ theo đúng MyVinmec; thêm từ khóa khẩn cấp theo công cụ Sàng lọc đột quỵ | `app.py`, `search.py`, `guard.py`, PR02; proto-v2 | 41/41 test tự động đạt; chưa thử với người dùng |
+| 19/10/2026 | Ứng viên muốn người thử bấm trên giao diện giống MyVinmec thật để so hiện trạng và đề xuất | Giao diện Streamlit, bố cục gần giống mục Cộng đồng hỏi đáp | Bản mô phỏng điện thoại dựng lại 8 màn hình MyVinmec đã chụp, có hai chế độ Hiện trạng và Thiết kế đề xuất; thêm lối vào từ phiếu kết quả (màn hình đề xuất); Streamlit giữ làm giao diện kỹ thuật | `app/mobile/`, `server.py`, `llm.py`; proto-v2 | 45/45 test tự động đạt; ảnh chụp 4 kịch bản trong `screenshots/`; chưa thử với người dùng |
 
 Ghi cả quyết định chưa sửa và lý do. Không viết lại log để tạo cảm giác đã thử nghiệm nhiều vòng.
 

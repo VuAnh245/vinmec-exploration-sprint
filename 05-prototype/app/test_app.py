@@ -10,7 +10,7 @@ APP = str(Path(__file__).with_name("app.py"))
 
 @pytest.fixture
 def app(monkeypatch):
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.setenv("OPENAI_API_KEY", "")  # đặt rỗng để app không nạp key từ .env
     at = AppTest.from_file(APP, default_timeout=30)
     at.run()
     assert not at.exception

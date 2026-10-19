@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mô phỏng MyVinmec: Hỏi đáp kết quả</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stage">
+    <aside class="panel">
+      <h1>Bản mô phỏng có thể bấm</h1>
+      <p class="panel-sub">Dựng lại MyVinmec v3.0.5 theo ảnh chụp ngày 19/10/2026 và gắn thiết kế đề xuất. Không phải ứng dụng thật của Vinmec.</p>
+
+      <div class="mode-switch" role="group" aria-label="Chế độ">
+        <button data-act="mode" data-mode="hien-trang" class="on">Hiện trạng</button>
+        <button data-act="mode" data-mode="de-xuat">Thiết kế đề xuất</button>
+      </div>
+
+      <section class="panel-box">
+        <h2 id="note-title">Màn hình</h2>
+        <p id="note-text"></p>
+        <p id="note-evidence" class="evidence"></p>
+      </section>
+
+      <section class="panel-box">
+        <h2>Kịch bản demo</h2>
+        <button class="scenario" data-act="scenario" data-n="1">1. Tìm "GLU" trên app hiện tại</button>
+        <button class="scenario" data-act="scenario" data-n="2">2. Tìm GLU từ phiếu kết quả (đề xuất)</button>
+        <button class="scenario" data-act="scenario" data-n="3">3. Gõ "men gan cao" (đề xuất)</button>
+        <button class="scenario" data-act="scenario" data-n="4">4. Mô tả triệu chứng khẩn (đề xuất)</button>
+      </section>
+
+      <section class="panel-box">
+        <h2>Câu hỏi đã lưu để hỏi bác sĩ</h2>
+        <ul id="saved-list"><li class="muted">Chưa lưu câu hỏi nào.</li></ul>
+        <button id="download" data-act="download" disabled>Tải danh sách (.txt)</button>
+      </section>
+
+      <p class="muted small" id="ai-status"></p>
+    </aside>
+
+    <div class="phone" aria-label="Màn hình điện thoại mô phỏng">
+      <div class="statusbar"><span>09:41</span><span>▂▄▆ ᯤ ▭</span></div>
+      <div class="mock-label">BẢN MÔ PHỎNG · không phải ứng dụng thật</div>
+      <div id="screen" class="screen"></div>
+      <nav id="tabbar" class="tabbar">
+        <button data-act="tab" data-tab="home"><span>▦</span>Trang chủ</button>
+        <button data-act="tab" data-tab="records"><span>🪪</span>Hồ sơ</button>
+        <button data-act="tab" data-tab="booking" class="tab-center"><span>📅</span>Đặt lịch</button>
+        <button data-act="tab" data-tab="notify"><span>🔔</span>Thông báo</button>
+        <button data-act="tab" data-tab="account"><span>👤</span>Tài khoản</button>
+      </nav>
+      <button class="ai-bubble" data-act="ai" aria-label="Trợ lý AI">Ai</button>
+      <div id="sheet-backdrop" class="sheet-backdrop" data-act="close-sheet" hidden></div>
+      <div id="sheet" class="sheet" hidden></div>
+      <div id="toast" class="toast" hidden></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
