@@ -14,9 +14,11 @@ Y_KHOA = "y_khoa"
 TRONG_PHAM_VI = "trong_pham_vi"
 
 # Mô tả triệu chứng cấp tính: dừng ngay, không gọi model.
+# Ba dấu hiệu méo miệng, yếu liệt chân tay, khó nói lấy theo công cụ Sàng lọc đột quỵ trong MyVinmec (O10).
 URGENT_PATTERNS = [
     r"dau nguc", r"tuc nguc", r"kho tho", r"ngat xiu", r"bi ngat", r"bat tinh",
     r"co giat", r"liet nua nguoi", r"yeu nua nguoi", r"meo mieng",
+    r"yeu chan tay", r"liet chan tay", r"dot ngot kho noi", r"khong noi duoc", r"noi ngong",
     r"chay mau nhieu", r"non ra mau", r"di ngoai ra mau", r"sot cao",
     r"dau du doi", r"tu tu", r"muon chet", r"tu hai",
 ]

@@ -9,6 +9,7 @@ from guard import KHAN_CAP, TRONG_PHAM_VI, Y_KHOA, check_answer, classify_questi
     "Tôi đang đau ngực và khó thở",
     "toi bi ngat xiu sau khi lay mau",
     "Bố tôi bị méo miệng, nói ngọng",
+    "Mẹ tôi đột ngột khó nói, yếu chân tay",
     "Tôi muốn chết",
 ])
 def test_urgent_questions_stop_before_model(question):
@@ -33,6 +34,7 @@ def test_medical_questions_go_to_doctor(question):
     "Dữ liệu trên phiếu lấy từ đâu?",  # "liệu" không phải liều thuốc
     "Chẩn đoán hình ảnh là gì?",
     "GLU là viết tắt của gì",
+    "Tôi thấy khó nói chuyện với bác sĩ về kết quả",  # "khó nói" không kèm "đột ngột"
 ])
 def test_questions_about_reading_the_report_are_in_scope(question):
     assert classify_question(question) == TRONG_PHAM_VI

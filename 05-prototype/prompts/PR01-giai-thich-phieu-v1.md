@@ -1,4 +1,4 @@
-# PR01: Giải thích phiếu kết quả (v1)
+# PR01: Giải thích phiếu kết quả (v1, không còn dùng từ proto-v2)
 
 - ID / phiên bản: PR01 v1
 - Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Ghi model thật đã dùng khi thử: [CHƯA ĐIỀN]
@@ -6,7 +6,7 @@
 - Input được phép: một phiếu kết quả mô phỏng trong `mock-data/` và câu hỏi của người dùng đã qua lớp lọc `guard.classify_question`.
 - Giới hạn output: câu trả lời đi qua `guard.check_answer`; số điện thoại và thông tin dịch vụ chỉ lấy từ cấu hình trong `app.py`.
 - Phiên bản prototype sử dụng: proto-v1 (chưa gắn tag)
-- Kết quả thử và hạn chế: [CHƯA CÓ]
+- Kết quả thử và hạn chế: không thử với người dùng. Thay bằng PR02 ngày 19/10/2026 sau khi need statement đổi; xem nhật ký điều chỉnh trong `user-testing/findings.md`.
 
 App đọc hai khối `text` bên dưới theo thứ tự: khối đầu là system prompt, khối sau là user prompt template. Sửa prompt thì sửa ở đây và tăng phiên bản.
 

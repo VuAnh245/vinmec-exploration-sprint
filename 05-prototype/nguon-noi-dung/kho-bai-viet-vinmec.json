@@ -1,0 +1,116 @@
+{
+  "mo_ta": "Chỉ mục 11 trang công khai trên vinmec.com dùng cho prototype. Chỉ lưu tiêu đề, đường dẫn, người tư vấn và tên các mục trong bài; không chép nội dung bài. Người đọc bấm link để đọc bài gốc.",
+  "ngay_kiem_chung": "2026-10-19",
+  "bai": [
+    {
+      "id": "K01",
+      "tieu_de": "Vai trò của định lượng glucose trong máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/vai-tro-cua-dinh-luong-glucose-trong-mau-vi",
+      "loai": "Bài viết",
+      "tu_van": "ThS.BS Đỗ Thị Hoàng Hà, Khoa Xét nghiệm, Vinmec Hải Phòng",
+      "chi_so": ["GLU", "glucose máu", "đường huyết"],
+      "muc": ["Glucose là gì?", "Định lượng glucose trong máu bình thường là bao nhiêu?", "Các phương pháp định lượng glucose trong máu", "Tại sao cần đo định lượng glucose trong máu?"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K02",
+      "tieu_de": "Xét nghiệm đường huyết là gì?",
+      "url": "https://www.vinmec.com/vie/bai-viet/xet-nghiem-duong-huyet-la-gi-vi",
+      "loai": "Bài viết",
+      "tu_van": "ThS.BS Đỗ Thị Hoàng Hà, Vinmec Hải Phòng",
+      "chi_so": ["GLU", "đường huyết lúc đói", "glucose máu"],
+      "muc": ["Xét nghiệm đường huyết là gì?", "Các loại xét nghiệm đường huyết", "Xét nghiệm đường huyết lúc đói đối với bệnh tiểu đường", "Chuẩn bị thực hiện các xét nghiệm đường huyết như thế nào?"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K03",
+      "tieu_de": "Vai trò của định lượng glucose trong nước tiểu",
+      "url": "https://www.vinmec.com/vie/bai-viet/vai-tro-cua-dinh-luong-glucose-trong-nuoc-tieu-vi",
+      "loai": "Bài viết",
+      "tu_van": "Bác sĩ Đỗ Thị Hoàng Hà, Khoa Xét nghiệm, Vinmec Hải Phòng",
+      "chi_so": ["glucose nước tiểu", "glucose niệu"],
+      "muc": ["Xét nghiệm glucose trong nước tiểu"],
+      "kiem_chung": "Ứng viên mở trong MyVinmec ngày 19/10/2026 (ảnh O6-glu-ket-qua-2-mo-dung-bai); đường dẫn lấy từ kết quả tìm kiếm"
+    },
+    {
+      "id": "K04",
+      "tieu_de": "Men gan cao có nguy hiểm không?",
+      "url": "https://www.vinmec.com/vie/bai-viet/men-gan-cao-co-nguy-hiem-khong-vi",
+      "loai": "Bài viết",
+      "tu_van": "Bác sĩ chuyên khoa II Trần Khắc Điền",
+      "chi_so": ["men gan", "ALT", "AST"],
+      "muc": ["Thế nào là men gan cao?", "Men gan cao có nguy hiểm không?", "Nguyên nhân gây ra men gan cao", "Triệu chứng khi men gan tăng cao", "Phòng ngừa tăng men gan"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K05",
+      "tieu_de": "Chỉ số AST, ALT là chỉ số gì?",
+      "url": "https://www.vinmec.com/vie/bai-viet/chi-so-ast-alt-la-chi-so-gi-vi",
+      "loai": "Hỏi đáp bác sĩ",
+      "tu_van": "ThS.BS Đỗ Thị Hoàng Hà",
+      "chi_so": ["ALT", "AST", "GOT", "GPT", "men gan"],
+      "muc": ["Hỏi", "Trả lời"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K06",
+      "tieu_de": "Hướng dẫn đọc kết quả xét nghiệm mỡ máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/huong-dan-doc-ket-qua-xet-nghiem-mo-mau-vi",
+      "loai": "Hỏi đáp bác sĩ",
+      "tu_van": "ThS. Phạm Văn Hùng",
+      "chi_so": ["mỡ máu", "CHOL", "TG", "HDL-C", "LDL-C"],
+      "muc": ["Hỏi", "Trả lời"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K07",
+      "tieu_de": "Hướng dẫn cách xem kết quả Cholesterol của bạn",
+      "url": "https://www.vinmec.com/vie/bai-viet/huong-dan-cach-xem-ket-qua-cholesterol-cua-ban-vi",
+      "loai": "Bài viết",
+      "tu_van": "Bác sĩ Nội tổng hợp, Vinmec Hải Phòng",
+      "chi_so": ["CHOL", "cholesterol", "HDL-C", "LDL-C", "mỡ máu"],
+      "muc": ["Cách đọc kết quả xét nghiệm mỡ máu", "Mục tiêu của bạn"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K08",
+      "tieu_de": "Hướng dẫn cách đọc kết quả xét nghiệm tổng phân tích tế bào máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/huong-dan-cach-doc-ket-qua-xet-nghiem-tong-phan-tich-te-bao-mau-vi",
+      "loai": "Bài viết",
+      "tu_van": "",
+      "chi_so": ["công thức máu", "RBC", "HGB", "HCT", "MCV", "NEUT", "LYM", "PLT", "bạch cầu", "tiểu cầu"],
+      "muc": ["Tổng phân tích tế bào máu là gì?", "Hướng dẫn cách đọc kết quả xét nghiệm tổng phân tích tế bào máu (RBC, HBG, HCT, MCV, MCH, MCHC, RDW, NEUT, LYM, MONO, EOS, BASO, PLT, PDW, MPV)"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K09",
+      "tieu_de": "Ý nghĩa của các chỉ số xét nghiệm sinh hóa máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/y-nghia-cua-cac-chi-so-xet-nghiem-sinh-hoa-mau-vi",
+      "loai": "Bài viết",
+      "tu_van": "ThS.BS Đỗ Thị Hoàng Hà, Khoa Xét nghiệm, Vinmec Hải Phòng",
+      "chi_so": ["sinh hóa máu", "ure", "CREA", "creatinin", "ALT", "AST", "GGT", "bilirubin", "albumin", "đường huyết", "mỡ máu", "acid uric", "URIC"],
+      "muc": ["Xét nghiệm sinh hóa máu là gì?", "Ure máu", "Creatinin huyết thanh", "AST, ALT, GGT", "ALP", "Bilirubin", "Albumin", "Đường huyết", "Mỡ máu", "Ion đồ", "Acid Uric"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K10",
+      "tieu_de": "Giới hạn bình thường của xét nghiệm creatinin máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/gioi-han-binh-thuong-cua-xet-nghiem-creatinin-mau-vi",
+      "loai": "Bài viết",
+      "tu_van": "",
+      "chi_so": ["CREA", "creatinin"],
+      "muc": ["Xét nghiệm creatinin máu là gì?", "Xét nghiệm creatinin máu có ý nghĩa như thế nào?", "Khi nào cần xét nghiệm creatinin máu?", "Cách phân tích các kết quả của xét nghiệm creatinin máu"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    },
+    {
+      "id": "K11",
+      "tieu_de": "Ý nghĩa các chỉ số trong xét nghiệm máu",
+      "url": "https://www.vinmec.com/vie/bai-viet/y-nghia-cac-chi-so-trong-xet-nghiem-mau-vi",
+      "loai": "Bài viết",
+      "tu_van": "BSCK I Lê Thị Nhã Hiền, Vinmec Nha Trang",
+      "chi_so": ["công thức máu", "xét nghiệm máu"],
+      "muc": ["Xét nghiệm máu để làm gì?", "Ý nghĩa các chỉ số trong xét nghiệm công thức máu", "Những điều cần lưu ý trước khi xét nghiệm máu"],
+      "kiem_chung": "Mở trực tiếp ngày 19/10/2026"
+    }
+  ]
+}
