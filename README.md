@@ -25,31 +25,44 @@
 | Thử nghiệm và điều chỉnh | [Kế hoạch thử](05-prototype/user-testing/test-plan.md), [U01](05-prototype/user-testing/U01.md), [U02](05-prototype/user-testing/U02.md), [U03](05-prototype/user-testing/U03.md), [Tổng hợp và thay đổi](05-prototype/user-testing/findings.md) |
 | Rủi ro và đạo đức | [Rủi ro và quản lý dữ liệu](06-rui-ro-dao-duc/risk-register.md), [Chuyển tuyến khẩn cấp](06-rui-ro-dao-duc/escalation.md) |
 | Coach plan | [Kế hoạch một trang](07-coach-plan/coach-plan.md) |
-| AI hỗ trợ | [Mục "Phần do AI hỗ trợ"](#phần-do-ai-hỗ-trợ) |
+| Phần tự làm và AI hỗ trợ | [Phần ứng viên tự làm](#phần-ứng-viên-tự-làm), [Phần do AI hỗ trợ](#phần-do-ai-hỗ-trợ) |
 | Slide | [slides.pdf](slides.pdf), 10 slide |
+
+## Phần ứng viên tự làm
+
+- Chọn khoảnh khắc "Nhận kết quả" (17/10/2026). Sau khi tự dùng app, tìm ra ngách Cộng đồng hỏi đáp bác sĩ và chốt đi theo hướng này.
+- Cài và dùng MyVinmec v3.0.5, chụp 17 ảnh màn hình ([anh-myvinmec/](01-phong-van/anh-myvinmec/)). Tự kiểm thử tìm kiếm hai lượt ngày 19/10/2026 và phát hiện kết quả "GLU" mở sai bài.
+- Phỏng vấn trực tiếp 3 người tại Vinmec Ocean Park 2 ngày 18/10/2026 (30, 25 và 35 phút): xin đồng ý, giữ cam kết không ghi tên vấn đề sức khỏe. Ngày 19/10/2026 hồi tưởng và xác nhận từng dòng bổ sung trong phiếu P.
+- Quyết định các lần đổi hướng của prototype:
+  - bỏ việc để AI tự giải thích phiếu (v1 sang v2);
+  - nhận định "chỉ tìm kiếm tốt hơn thì giá trị nhỏ", dẫn tới vòng khép kín (v3);
+  - yêu cầu hiệu ứng chuyển trạng thái và hiện rõ điểm đau trước và sau (v3.1);
+  - chỉ ra rằng người bệnh không biết bác sĩ giỏi lĩnh vực nào và giao diện quá đơn điệu (v3.2).
+- Điều phối 3 phiên thử U01-U03 ngày 19/10/2026; sửa lỗi hiệu ứng nhỏ sau U01.
+- Cung cấp API key. Quyết định chuyển sang Gemini khi tài khoản OpenAI hết credit.
+- Cung cấp kinh nghiệm thật cho coach plan (dự án P09, Lab Coach AI Thực Chiến).
+- Đọc lại và duyệt nội dung trước mỗi commit; tự chạy các lệnh git.
 
 ## Phần do AI hỗ trợ
 
-Khung repo và biểu mẫu ban đầu được ChatGPT hỗ trợ tạo ngày 17/10/2026 dựa trên nội dung đề đã đọc và trao đổi với ứng viên. Chưa có bằng chứng thực địa, mã ứng dụng hay kết quả thử được tạo trong khung này.
+Công cụ: Claude Code, model Claude Opus 5.5. Ứng viên quyết định hướng đi và duyệt kết quả; AI soạn thảo, viết code và tổng hợp theo yêu cầu của ứng viên.
 
-| File / nội dung | Công cụ, model nếu biết | AI hỗ trợ gì | Người kiểm tra và cách kiểm tra | Trạng thái |
-|---|---|---|---|---|
-| Khung repo và biểu mẫu | ChatGPT; không ghi model khi chưa xác minh | Tổ chức file, câu hỏi gợi ý, checklist | Ứng viên cần đọc và đối chiếu đề trước khi dùng | ĐÃ DUYỆT |
-| Quy ước đặt tên, `.gitattributes`, tinh gọn cấu trúc repo | Claude Code, Claude Opus 5.5 | Đề xuất quy ước tên file, mã P/U, prompt, commit; gộp các file trùng ý theo cấu trúc đề | Ứng viên duyệt trước khi commit | ĐÃ DUYỆT |
-| `01-phong-van/interview-guide.md` v1, `myvinmec-observation.md`, phiếu P01-P03 | Claude Code, Claude Opus 5.5 | Soạn câu hỏi theo khoảnh khắc "Nhận kết quả", lời xin đồng ý, danh sách tác vụ quan sát O1-O9, mẫu phiếu có dòng thời gian | Ứng viên đọc, chỉnh lời theo cách nói của mình trước khi phỏng vấn | ĐÃ DUYỆT |
-| `05-prototype/` proto-v1 (PR01), proto-v2 và proto-v3: bản mô phỏng điện thoại (`app/mobile/`, `server.py`), `app.py`, `search.py`, `guard.py`, `llm.py`, test, prompt PR02 và PR03, 2 phiếu mô phỏng | Claude Code, Claude Opus 5.5 | Dựng lại giao diện MyVinmec từ ảnh ứng viên chụp; viết hai chế độ hiện trạng và đề xuất; vòng khép kín (bài hiện sẵn, soạn câu hỏi gửi bác sĩ, bảng phía Vinmec); tìm kiếm, hai lớp chặn, máy chủ; soạn system prompt; tạo dữ liệu mô phỏng; viết 64 test; chuyển model từ OpenAI sang Gemini; chụp màn hình kiểm tra trước và sau | Chạy test tự động (64/64 đạt); ứng viên chọn hướng vòng khép kín; ứng viên chạy bản mô phỏng với API key, chạy bộ 5 từ khóa và đọc lại prompt trước khi cho người thử | ĐÃ DUYỆT |
-| `05-prototype/nguon-noi-dung/kho-bai-viet-vinmec.json` | Claude Code, Claude Opus 5.5 | Tìm và mở 10 trang trên vinmec.com, ghi tiêu đề, đường dẫn, người tư vấn, tên mục; bài thứ 11 lấy từ ảnh ứng viên chụp trong app | Ứng viên mở thử vài link để xác nhận | ĐÃ DUYỆT |
-| `02-journey-map/journey-map.md`, `01-phong-van/insights.md` | Claude Code, Claude Opus 5.5 | Dựng workflow có sơ đồ, phân tích 6 điểm đau và nguyên nhân có thể từ nhật ký quan sát; tổng hợp 4 insight từ quan sát | Ứng viên đối chiếu với ảnh chụp; cột cảm xúc và insight phỏng vấn chờ P01-P03 | ĐÃ DUYỆT |
-| `01-phong-van/myvinmec-observation.md`, `03-need-statement/need-statement.md` (nháp v1) | Claude Code, Claude Opus 5.5 | Ghi nhật ký O1-O10 và bảng kiểm thử tìm kiếm từ ảnh chụp và ghi nhận của ứng viên; soạn nháp need statement và bảng bằng chứng | Ứng viên tự dùng app, chụp ảnh, kiểm thử tìm kiếm hai lượt; đọc lại nhật ký so với ảnh | ĐÃ DUYỆT |
-| Phiếu P01-P03, insight I05-I14, need statement v3 (E05-E09), ĐĐ7-ĐĐ10 và cột cảm xúc trong workflow, quan sát O6b | Claude Code, Claude Opus 5.5 | Chép tóm tắt phỏng vấn của ứng viên vào phiếu dạng diễn ý, bỏ tên vấn đề sức khỏe theo cam kết; soạn câu chữ cho phần bổ sung câu 4-15 của guide; tổng hợp insight; đề xuất câu chữ need statement | Ứng viên tự phỏng vấn, xác nhận sự đồng ý; ngày 19/10/2026 rà soát từng dòng bổ sung và xác nhận khớp với trí nhớ về buổi phỏng vấn; chọn đổi need statement | ĐÃ DUYỆT |
-| `04-best-practice/best-practice.md` | Claude Code, Claude Opus 5.5 | Tìm và mở nguồn, tóm tắt số liệu, đề xuất bài học cho Vinmec | Ứng viên mở lại 3 nguồn và bài gốc trên JAMA Network Open để đối chiếu số liệu | ĐÃ DUYỆT |
-| `06-rui-ro-dao-duc/risk-register.md`, `escalation.md` | Claude Code, Claude Opus 5.5 | Lập danh mục rủi ro RR01-RR12 gắn với code, bảng quản lý dữ liệu, thông điệp chuyển tuyến | Ứng viên xác minh số tổng đài trong app, điền thời điểm xóa ghi chép thô | ĐÃ DUYỆT |
-| `05-prototype/user-testing/test-plan.md`, phiếu U01-U03 | Claude Code, Claude Opus 5.5 | Soạn 4 tác vụ thử (T1-T4), tiêu chí, chỉ số, lời mở đầu, câu hỏi sau phiên | Ứng viên đọc thử lời mở đầu và chạy thử 4 tác vụ trước phiên đầu | ĐÃ DUYỆT |
-| `slides.pdf`, chạy thử nội bộ T1-T4 trong `findings.md`, phiếu U01-U03 dạng điền nhanh | Claude Code, Claude Opus 5.5 | Dựng 10 slide từ nội dung repo theo dàn ý, thiết kế lại sau phiên thử (HTML xuất PDF bằng Chrome); chạy các hàm của prototype với 5 từ khóa và T1-T4 (API trả lỗi 429); in sẵn đường đi đúng và tiêu chí trong phiếu U | Ứng viên đọc lại số liệu trên slide so với file nguồn và diễn tập 10 phút; phiếu U chỉ điền sau phiên thử thật | ĐÃ DUYỆT |
-| Phiếu U01-U03 sau phiên, cập nhật `findings.md` và cột phiên thử trong need statement | Claude Code, Claude Opus 5.5 | Chép tóm tắt sau phiên của ứng viên vào phiếu dạng diễn ý; ô ứng viên không cung cấp ghi "Không ghi nhận"; ghi giới hạn của phiên | Ứng viên tự điều phối 3 phiên ngày 19/10/2026 và cung cấp tóm tắt; đọc lại phiếu trước khi nộp | ĐÃ DUYỆT |
-| `07-coach-plan/coach-plan.md` | Claude Code, Claude Opus 5.5 | Soạn lịch theo khung 6 tuần, cách gỡ vướng, kiểm tra chất lượng; biên tập phần kinh nghiệm thật từ lời kể của ứng viên | Ứng viên cung cấp kinh nghiệm thật (dự án P09, Lab Coach AI Thực Chiến) và duyệt bản biên tập | ĐÃ DUYỆT |
+| File / nội dung | AI làm gì | Ứng viên quyết định và kiểm tra | Trạng thái |
+|---|---|---|---|
+| Quy ước đặt tên, `.gitattributes`, cấu trúc repo | Đề xuất quy ước tên file, mã P/U, prompt, commit; gộp các file trùng ý theo cấu trúc đề | Chọn quy ước, duyệt trước khi commit | ĐÃ DUYỆT |
+| `01-phong-van/interview-guide.md` v1, mẫu phiếu P01-P03 | Soạn câu hỏi theo khoảnh khắc "Nhận kết quả", lời xin đồng ý, mẫu phiếu có dòng thời gian | Chọn khoảnh khắc; chỉnh lời theo cách nói của mình; tự phỏng vấn | ĐÃ DUYỆT |
+| `01-phong-van/myvinmec-observation.md` | Ghi nhật ký O1-O10 và bảng kiểm thử tìm kiếm từ ảnh chụp và ghi nhận của ứng viên | Tự dùng app, chụp ảnh, kiểm thử tìm kiếm hai lượt; đối chiếu nhật ký với ảnh | ĐÃ DUYỆT |
+| Phiếu P01-P03, insight I05-I14, need statement v3 (E05-E09), ĐĐ7-ĐĐ10, quan sát O6b | Chép tóm tắt phỏng vấn của ứng viên vào phiếu dạng diễn ý, bỏ tên vấn đề sức khỏe; soạn câu chữ cho phần bổ sung câu 4-15 của guide; tổng hợp insight; đề xuất câu chữ need statement | Cung cấp nội dung phỏng vấn; ngày 19/10/2026 rà từng dòng bổ sung và xác nhận khớp với trí nhớ; chọn đổi need statement | ĐÃ DUYỆT |
+| `02-journey-map/journey-map.md`, `01-phong-van/insights.md` (I01-I04), need statement nháp v1 | Dựng workflow có sơ đồ, phân tích điểm đau và nguyên nhân có thể; tổng hợp insight từ quan sát; soạn nháp need statement và bảng bằng chứng | Đối chiếu với ảnh chụp và phỏng vấn; chọn phiên bản need statement | ĐÃ DUYỆT |
+| `05-prototype/` proto-v1 đến proto-v3.2: bản mô phỏng điện thoại, `server.py`, `app.py`, `search.py`, `guard.py`, `llm.py`, test, prompt PR02 và PR03, dữ liệu mô phỏng | Dựng lại giao diện MyVinmec từ ảnh ứng viên chụp; viết hai chế độ hiện trạng và đề xuất, vòng khép kín, tìm kiếm, hai lớp chặn, máy chủ; soạn system prompt; tạo dữ liệu mô phỏng; viết 64 test; chuyển model sang Gemini | Quyết định từng lần đổi hướng (mục trên); chạy bản mô phỏng với API key; đọc lại prompt; 64/64 test đạt | ĐÃ DUYỆT |
+| `05-prototype/nguon-noi-dung/kho-bai-viet-vinmec.json` | Tìm và mở 10 trang trên vinmec.com, ghi tiêu đề, đường dẫn, người tư vấn, tên mục | Bài thứ 11 lấy từ ảnh ứng viên chụp trong app; mở thử link để xác nhận | ĐÃ DUYỆT |
+| `04-best-practice/best-practice.md` | Tìm và mở nguồn, tóm tắt số liệu, đề xuất bài học cho Vinmec | Mở lại 3 nguồn để đối chiếu số liệu | ĐÃ DUYỆT |
+| `06-rui-ro-dao-duc/risk-register.md`, `escalation.md` | Lập danh mục rủi ro RR01-RR12 gắn với code, bảng quản lý dữ liệu, thông điệp chuyển tuyến | Xác minh số tổng đài trong app; chốt thời điểm xóa ghi chép thô | ĐÃ DUYỆT |
+| `05-prototype/user-testing/` (test-plan, U01-U03, findings) | Soạn 4 tác vụ thử, tiêu chí, lời mở đầu; chạy thử nội bộ và bộ 5 từ khóa; chép tóm tắt sau phiên của ứng viên vào phiếu U dạng diễn ý, ô không có thông tin ghi "Không ghi nhận" | Tự điều phối 3 phiên thử, cung cấp tóm tắt; xác nhận chế độ chạy không có AI; đọc lại phiếu | ĐÃ DUYỆT |
+| `07-coach-plan/coach-plan.md` | Soạn lịch theo khung 6 tuần, cách gỡ vướng, kiểm tra chất lượng; biên tập lời kể kinh nghiệm của ứng viên | Cung cấp kinh nghiệm thật; duyệt bản biên tập | ĐÃ DUYỆT |
+| `slides.pdf` | Dựng 10 slide từ nội dung repo (HTML xuất PDF bằng Chrome) | Đọc lại số liệu trên slide so với file nguồn; diễn tập 10 phút | ĐÃ DUYỆT |
 
-Không dùng AI để giả lời phỏng vấn hoặc kết quả người dùng. Không đưa thông tin sức khỏe/cá nhân vào prompt. Phân biệt AI hỗ trợ làm bài với chức năng AI của prototype.
+Không dùng AI để giả lời phỏng vấn hoặc kết quả người dùng. Không đưa thông tin sức khỏe hay thông tin cá nhân vào prompt. Phân biệt AI hỗ trợ làm bài với chức năng AI của prototype.
 
 ## Quy ước đặt tên
 
