@@ -73,7 +73,7 @@ Giả thuyết, chưa đo, không trình bày như tác động đã đạt:
 
 - Chỉ có 3 phiên thử, cả ba người thử là người đã phỏng vấn (P01-P03), đã quen chủ đề và quen ứng viên; phản hồi có thể thiên về tích cực.
 - Ghi chép phiên là tóm tắt diễn ý sau phiên: không có thời gian thao tác, câu gõ nguyên văn hay lời nguyên văn. Câu hỏi kiểm tra RR05 (ai cung cấp công cụ) chưa ghi nhận.
-- Chế độ AI trong các phiên chưa xác nhận: ứng viên ghi có AI, nhưng lần gọi kiểm tra cùng ngày vẫn trả lỗi 429. Nếu AI lỗi, T2 và T3 chạy ở nhánh dự phòng.
+- Ba phiên chạy không có AI (OpenAI hết credit cả ngày). T2 chỉ cho thấy phần tìm theo từ khóa; T3 chưa kiểm chứng ranh giới của model với người thử thật.
 - Cột tìm theo ý nghĩa (AI) đo bằng Gemini sau các phiên thử, không phải bằng model chạy trong phiên. Kho chỉ có 11 bài nên 5/5 chưa nói được gì về kho lớn của app.
 - Gọi liên tiếp nhiều lần có thể rơi vào nhánh lỗi AI (3/5 câu ở lượt đầu); khi đó app vẫn hiện kết quả từ khóa.
 - Không có AI, câu "chỉ số men gan ALT" không ra kết quả trong prototype.

@@ -7,7 +7,7 @@
 - Input được phép: lời người bệnh (đã qua `guard.classify_question`; câu khẩn cấp không tới model), một dòng trên phiếu mô phỏng, chỉ mục 11 bài.
 - Giới hạn output: `search.soan_cau_hoi` thay câu nháp bằng mẫu cố định nếu câu nháp rỗng, có số điện thoại, khẳng định bệnh hay trấn an (`guard.check_question`); chỉ giữ id có trong kho; chuyên khoa ngoài danh sách bị bỏ và thay bằng quy tắc theo mã chỉ số. Việc chọn bác sĩ do `search.match_doctors` làm, không do model.
 - Phiên bản prototype sử dụng: proto-v3.2
-- Kết quả thử và hạn chế: chưa có kết quả từ model (xem dòng model). Chạy thử nội bộ ngày 19/10/2026 ở nhánh dự phòng: câu hỏi theo mẫu có đủ tên chỉ số, giá trị, khoảng tham chiếu và cờ; chuyên khoa và bác sĩ gợi ý theo quy tắc mã chỉ số; câu khẩn cấp bị chặn (`user-testing/findings.md`). Đã dùng trong phiên U01-U03; chưa xác nhận model có trả lời trong các phiên này (xem phiếu U).
+- Kết quả thử và hạn chế: với Gemini `gemini-3.5-flash`, dòng WBC cho câu hỏi đủ tên chỉ số, giá trị, khoảng tham chiếu và cờ, gợi ý bài K08 (`user-testing/findings.md`). Chạy thử nội bộ ngày 19/10/2026 ở nhánh dự phòng: câu hỏi theo mẫu có đủ tên chỉ số, giá trị, khoảng tham chiếu và cờ; chuyên khoa và bác sĩ gợi ý theo quy tắc mã chỉ số; câu khẩn cấp bị chặn (`user-testing/findings.md`). Phiên U01-U03 chạy không có AI (OpenAI hết credit), nên chưa thử prompt này với người dùng.
 
 App đọc hai khối `text` bên dưới theo thứ tự: khối đầu là system prompt, khối sau là user prompt template.
 

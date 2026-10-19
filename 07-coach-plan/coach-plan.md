@@ -1,6 +1,6 @@
 # Mình sẽ coach một nhóm làm bài này thế nào
 
-Trạng thái: KẾ HOẠCH, CHƯA PHẢI KINH NGHIỆM ĐÃ LÀM VỚI BÀI NÀY. Ví dụ thật từ AI20K đánh dấu riêng ở cuối.
+Trạng thái: KẾ HOẠCH, CHƯA PHẢI KINH NGHIỆM ĐÃ LÀM VỚI BÀI NÀY. Kinh nghiệm thật (dự án P09, Lab Coach AI Thực Chiến) ghi riêng ở cuối.
 
 Mình dẫn 5-10 bạn K4, khoảng 3-5 nhóm 2 người. Kế hoạch bám nhịp của sprint: thứ Hai đào tạo V-RIC, thứ Tư đào tạo Vinmec, thứ Sáu checkpoint và nộp báo cáo tuần.
 
@@ -39,6 +39,17 @@ Nhịp tuần: thứ Hai họp 15 phút với từng nhóm để chốt mục ti
 
 Một bảng chung: mỗi nhóm một dòng, mỗi mốc một cột, trạng thái xanh/vàng/đỏ cập nhật mỗi thứ Sáu. Nhóm đỏ hai tuần liền thì mình đề xuất mentor vào cùng.
 
-## Từ kinh nghiệm thật ở AI20K
+## Từ kinh nghiệm thật: dự án P09 và Lab Coach AI Thực Chiến
 
-[CẦN ỨNG VIÊN BỔ SUNG 1-2 tình huống thật khi làm lab coach hoặc team lead: chuyện gì xảy ra, mình đã làm gì, kết quả ra sao, lần này làm khác thế nào.]
+Mình rút kinh nghiệm từ dự án P09 và vai trò Lab Coach trong chương trình AI Thực Chiến.
+
+Tình huống: kế hoạch thay đổi liên tục. Các bạn trong nhóm khó biết việc nào cần ưu tiên và hướng nào nên tiếp tục. Mỗi người vẫn làm đúng phần việc của mình, nhưng khi ghép lại thì kết quả không khớp, vì nhóm chưa thống nhất vấn đề cần giải quyết.
+
+Mình đã làm: trao đổi với nhóm để làm rõ lại mục tiêu, thống nhất hướng xử lý với leader, rồi chia nhỏ công việc để ai cũng biết bước tiếp theo của mình.
+
+Bài học: người dẫn nhóm cần lắng nghe, tổng hợp ý kiến và giúp nhóm ra quyết định có căn cứ. Không phải lúc nào mình cũng định hướng đúng ngay từ đầu, nên cần tách điều đã biết với điều chưa chắc, và kiểm chứng trước khi dồn nhiều công sức.
+
+Lần này mình làm khác:
+- Chốt mục tiêu, phạm vi và tiêu chí hoàn thành ngay tuần 0, trước khi nhóm bắt tay vào làm.
+- Mỗi lần kế hoạch đổi, ghi lại quyết định vào bảng theo dõi chung: vì sao đổi, việc gì tiếp tục, việc gì tạm dừng.
+- Buổi họp thứ Hai bắt đầu bằng việc nhắc lại need statement của nhóm, để các phần việc trong tuần khớp vào cùng một vấn đề.

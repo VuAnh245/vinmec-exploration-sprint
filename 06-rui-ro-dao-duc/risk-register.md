@@ -1,6 +1,6 @@
 # Rủi ro và giảm thiểu
 
-Trạng thái: ĐÃ ĐÁNH GIÁ THEO PROTO-V3. Đã thử với 3 người (U01-U03): T3 không ghi nhận lần nào AI vượt ranh giới; câu hỏi kiểm tra RR05 và RR12 chưa ghi nhận.
+Trạng thái: ĐÃ ĐÁNH GIÁ THEO PROTO-V3. Đã thử với 3 người (U01-U03) ở chế độ không có AI: nhánh lọc từ khóa hoạt động ở T3, nhưng ranh giới của model (RR01) chưa kiểm chứng với người thử; câu hỏi kiểm tra RR05 và RR12 chưa ghi nhận.
 
 Từ proto-v2, AI không tự giải thích kết quả mà chọn bài bác sĩ Vinmec đã viết. Rủi ro chính chuyển thành: AI chọn sai bài, viết lý do vượt ranh giới, hoặc bài nguồn hỏng hay lỗi thời. Mỗi biện pháp dưới đây gắn với một phần cụ thể trong code và có cách kiểm chứng.
 
