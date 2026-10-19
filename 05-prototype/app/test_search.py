@@ -84,3 +84,46 @@ def test_missing_key_or_model_error_falls_back_to_keyword_search():
     def broken(query, row):
         raise RuntimeError("API lỗi")
     assert tra_loi("ALT", None, CORPUS, broken)["loi_ai"]
+
+
+GLU_ROW = {"ma": "GLU", "ten": "Glucose (đường huyết lúc đói)", "ket_qua": 6.4, "don_vi": "mmol/L",
+           "khoang_tham_chieu": "3.9 - 6.1", "co": "H"}
+
+
+@pytest.mark.parametrize("code, expected", [
+    ("GLU", ["K01", "K02"]),
+    ("NEUT%", ["K08"]),
+    ("WBC", []),
+])
+def test_lookup_by_code_shows_articles_without_ai(code, expected):
+    from search import lookup_by_code
+    assert ids(lookup_by_code(code, CORPUS)) == expected
+
+
+def test_draft_without_key_uses_template_with_report_values():
+    from search import soan_cau_hoi
+    result = soan_cau_hoi("Tôi hơi lo", GLU_ROW, CORPUS, lambda w, r: None)
+    assert result["loi_ai"]
+    assert "GLU" in result["cau_hoi_nhap"] and "6.4" in result["cau_hoi_nhap"] and "Tôi hơi lo" in result["cau_hoi_nhap"]
+    assert ids(result["trung"]) == ["K01", "K02"]
+
+
+def test_draft_replaces_unsafe_model_text_and_unknown_ids():
+    from search import soan_cau_hoi
+    raw = {"cau_hoi_nhap": "Bạn bị tiểu đường rồi, không sao đâu.", "trung_voi": ["K99", "K02"]}
+    result = soan_cau_hoi("", GLU_ROW, CORPUS, lambda w, r: raw)
+    assert "tiểu đường rồi" not in result["cau_hoi_nhap"]
+    assert ids(result["trung"]) == ["K02"]
+
+
+def test_draft_keeps_medication_questions_for_doctor():
+    from search import soan_cau_hoi
+    raw = {"cau_hoi_nhap": "Với GLU 6.4 mmol/L, tôi có nên uống thuốc không?", "trung_voi": []}
+    assert "nên uống thuốc" in soan_cau_hoi("", GLU_ROW, CORPUS, lambda w, r: raw)["cau_hoi_nhap"]
+
+
+def test_draft_stops_on_urgent_words():
+    from search import soan_cau_hoi
+    def ask(words, row):
+        raise AssertionError("không được gọi model")
+    assert soan_cau_hoi("tôi đang khó thở", GLU_ROW, CORPUS, ask)["loai"] == guard.KHAN_CAP

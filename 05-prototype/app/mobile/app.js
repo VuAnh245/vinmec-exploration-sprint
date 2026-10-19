@@ -4,7 +4,7 @@
 // - hien-trang: tái hiện đúng những gì quan sát được ngày 19/10/2026 (01-phong-van/myvinmec-observation.md)
 // - de-xuat: gắn thiết kế mới (tìm theo ý nghĩa, dẫn nguồn bài bác sĩ, lối vào từ phiếu kết quả)
 
-const state = { mode: "hien-trang", stack: [], corpus: {}, reports: [], coAi: false, saved: [], shownQuestions: [] };
+const state = { mode: "hien-trang", stack: [], corpus: {}, reports: [], theoChiSo: {}, coAi: false, saved: [], shownQuestions: [] };
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -163,14 +163,48 @@ const SCREENS = {
 
   result(p) {
     const r = state.reports[p.i];
-    note("Phiếu kết quả (màn hình đề xuất)", "Mỗi chỉ số có cờ có nút \"Tìm hiểu chỉ số này\". Nút mở tìm kiếm kèm ngữ cảnh dòng trên phiếu, để AI biết GLU ở đây là glucose máu.", "Giải quyết: ĐĐ3, ĐĐ6");
+    note("Phiếu kết quả (màn hình đề xuất)",
+      "① Bài bác sĩ đã viết hiện sẵn ngay dưới mỗi chỉ số có cờ, người bệnh không phải gõ tìm. Phần này khớp theo mã chỉ số, không cần AI. Chỉ số chưa có bài thì đi thẳng tới ② Hỏi bác sĩ.",
+      "Giải quyết: ĐĐ2, ĐĐ3, ĐĐ6. Căn cứ: BP01 (lo lắng tập trung ở kết quả bất thường)");
     const rows = r.chi_so.map((c, j) => `<div class="lab-row"><div class="top"><span class="nm">${esc(c.ten)} <span class="muted small">(${esc(c.ma)})</span></span>
       <span class="val">${esc(c.ket_qua)} ${esc(c.don_vi)}${c.co ? `<span class="flag ${esc(c.co)}">${esc(c.co)}</span>` : ""}</span></div>
       <div class="rng">Khoảng tham chiếu: ${esc(c.khoang_tham_chieu)}</div>
-      ${c.co ? `<button class="explore" data-act="explore-row" data-i="${p.i}" data-j="${j}">Tìm hiểu chỉ số này</button>` : ""}</div>`).join("");
+      ${c.co ? pushBox(c, p.i, j) : ""}</div>`).join("");
     return `<div class="topbar"><button class="icon-btn" data-act="back">←</button><h2>${esc(r.loai_phieu)}</h2><span class="icon-btn"></span></div>
       <div class="sim-tag">DỮ LIỆU MÔ PHỎNG, không phải kết quả của người thật</div>
       <div style="height:8px"></div>${rows}<p class="muted small" style="margin:10px 16px">${esc(r.ghi_chu_phieu)}</p>`;
+  },
+
+  ask(p) {
+    const head = `<div class="topbar"><button class="icon-btn" data-act="back">←</button><h2>Hỏi bác sĩ</h2><span class="icon-btn"></span></div>`;
+    const ctx = p.row ? `<div class="row-ctx">Về chỉ số: ${esc(p.row.ten)} (${esc(p.row.ma)}) · ${esc(p.row.ket_qua)} ${esc(p.row.don_vi)} · ${esc(p.row.co)}</div>` : "";
+    if (p.stage === "urgent") {
+      note("Tình huống khẩn cấp", "Lời người bệnh mô tả triệu chứng khẩn cấp: không soạn, không gửi câu hỏi.", "RR02");
+      return head + `<div class="alert red"><b>Nếu bạn đang có triệu chứng như vậy, hãy gọi cấp cứu 115 hoặc đến cơ sở cấp cứu gần nhất ngay.</b><br>Công cụ này không xử lý tình huống khẩn cấp.</div>`;
+    }
+    if (p.stage === "sent") {
+      note("③ Khép vòng", "Câu hỏi đã vào hàng đợi phía Vinmec. Bấm \"Xem phía Vinmec\" ở bảng bên trái để thấy câu tìm không ra, chỉ số thiếu nội dung và câu hỏi đã gửi.", "Giải quyết: ĐĐ5, ĐĐ6");
+      return head + `<div class="block"><h5>✅ Đã gửi câu hỏi riêng tư cho bác sĩ (mô phỏng)</h5>
+        <p class="small">Bản mô phỏng không có bác sĩ thật trả lời.</p>
+        ${p.consent ? '<p class="small">Bạn đồng ý cho Vinmec dùng câu hỏi và câu trả lời đã ẩn danh: khi bác sĩ trả lời, nội dung này được bổ sung vào kho để người sau tìm thấy.</p>' : '<p class="small">Bạn không đồng ý bổ sung vào kho: câu hỏi chỉ dùng để bác sĩ trả lời riêng cho bạn.</p>'}
+        <button class="btn-teal" data-act="vinmec">Xem phía Vinmec</button></div>`;
+    }
+    if (p.stage === "draft") {
+      const d = p.draft;
+      note("② Soạn câu hỏi và chống trùng",
+        d.loi_ai ? "Chưa kết nối AI nên câu hỏi được soạn theo mẫu, ghép đúng thông tin trên phiếu." : "AI soạn câu hỏi rõ ràng từ lời người bệnh và dòng trên phiếu, đồng thời tìm bài bác sĩ đã trả lời câu tương tự. AI không trả lời thay bác sĩ.",
+        "Prompt PR03. Căn cứ: BP03 (bác sĩ lo về khối lượng tin nhắn)");
+      return head + ctx + (d.trung.length ? `<div class="block"><h5>Bác sĩ đã trả lời câu tương tự</h5><p class="small muted">Đọc trước; nếu vẫn chưa rõ thì gửi câu hỏi bên dưới.</p>
+          ${d.trung.map((b) => `<button class="push-item" data-act="open-article" data-id="${esc(b.id)}"><span class="badge ${b.loai === "Hỏi đáp bác sĩ" ? "qa" : ""}">${esc(b.loai)}</span> ${esc(b.tieu_de)}</button>`).join("")}</div>` : "")
+        + `<div class="block"><h5>Câu hỏi gửi bác sĩ (bạn sửa được)</h5><textarea id="draft" rows="6">${esc(d.cau_hoi_nhap)}</textarea>
+          <div class="privacy">🔒 Gửi riêng tư cho bác sĩ, không đăng lên Cộng đồng hỏi đáp.</div>
+          <label class="consent"><input type="checkbox" id="consent"> Đồng ý để Vinmec dùng câu hỏi và câu trả lời đã ẩn danh, bổ sung vào kho cho người sau</label>
+          <button class="btn-teal" data-act="send">Gửi câu hỏi</button></div>`;
+    }
+    note("② Hỏi bác sĩ", "Người bệnh viết bằng lời của mình; AI soạn lại thành câu hỏi rõ ràng kèm đúng thông tin trên phiếu.", "Prompt PR03");
+    return head + ctx + `<div class="block"><h5>Bạn muốn hỏi gì?</h5>
+      <textarea id="words" rows="4" placeholder="Ví dụ: chỉ số này cao thì tôi có cần khám lại không? Không ghi tên, số điện thoại.">${esc(p.words || "")}</textarea>
+      <button class="btn-teal" data-act="draft" ${p.loading ? "disabled" : ""}>${p.loading ? "Đang soạn..." : "Soạn câu hỏi"}</button></div>`;
   },
 
   "empty-thuoc"() {
@@ -235,6 +269,7 @@ function proposalResults(p) {
     }).join("")}</div>`;
   }
   html += `<div class="block"><h5>Vẫn cần hỏi thêm?</h5><div class="next-steps">
+      <button data-act="ask-search">Gửi câu hỏi cho bác sĩ</button>
       <button data-act="toast" data-msg="Bản mô phỏng: trên app thật, nút này mở luồng tư vấn với bác sĩ.">Tư vấn với bác sĩ</button>
       <button data-act="contact">Gửi yêu cầu CSKH 24/07</button>
       <button data-act="contact">Gọi bệnh viện nơi bạn khám</button></div></div>`;
@@ -246,6 +281,71 @@ function proposalResults(p) {
     r.loi_ai ? "Máy chủ chưa có API key hoặc gọi model lỗi; đang hiện kết quả tìm theo từ khóa." : "AI chọn bài trong kho 11 trang công khai của vinmec.com; đường dẫn lấy từ kho, không do AI viết.",
     "Giải quyết: ĐĐ2, ĐĐ3, ĐĐ5, ĐĐ6");
   return html;
+}
+
+function badge(b) {
+  return `<span class="badge ${b.loai === "Hỏi đáp bác sĩ" ? "qa" : ""}">${esc(b.loai)}</span>`;
+}
+
+// ① Bài bác sĩ đã viết hiện sẵn dưới chỉ số có cờ.
+function pushBox(c, i, j) {
+  const items = (state.theoChiSo[c.ma] || []).slice(0, 2).map((id) => state.corpus[id]).filter(Boolean);
+  const list = items.length
+    ? `<div class="push-title">📚 Bác sĩ Vinmec đã viết về ${esc(c.ma)}</div>${items.map((b) => `<button class="push-item" data-act="open-article" data-id="${esc(b.id)}">${badge(b)} ${esc(b.tieu_de)}</button>`).join("")}`
+    : `<div class="push-title muted">Chưa có bài bác sĩ viết về ${esc(c.ma)} trong kho</div>`;
+  return `<div class="push">${list}<div class="push-actions">
+    <button class="explore" data-act="explore-row" data-i="${i}" data-j="${j}">Tìm thêm</button>
+    <button class="explore ask" data-act="ask-row" data-i="${i}" data-j="${j}">Hỏi bác sĩ</button></div></div>`;
+}
+
+async function postJson(path, body) {
+  const res = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!res.ok) throw new Error(String(res.status));
+  return res.json();
+}
+
+async function draftQuestion() {
+  const p = current().params;
+  p.words = $("#words").value;
+  p.loading = true;
+  render(false);
+  try {
+    const d = await postJson("/api/draft", { loi_nguoi_benh: p.words, dong_phieu: p.row });
+    if (d.loai === "khan_cap") p.stage = "urgent";
+    else { p.draft = d; p.stage = "draft"; }
+  } catch {
+    toast("Không kết nối được máy chủ của bản mô phỏng.");
+  }
+  p.loading = false;
+  if (current().params === p) render(false);
+}
+
+async function sendQuestion() {
+  const p = current().params;
+  const question = $("#draft").value.trim();
+  if (!question) return toast("Câu hỏi đang trống.");
+  p.consent = $("#consent").checked;
+  try {
+    const res = await postJson("/api/send", { cau_hoi: question, dong_phieu: p.row, dong_y_bo_sung_kho: p.consent, trung_voi: p.draft.trung.map((b) => b.id) });
+    p.stage = res.loai === "khan_cap" ? "urgent" : "sent";
+    render(true);
+  } catch {
+    toast("Không kết nối được máy chủ của bản mô phỏng.");
+  }
+}
+
+// ③ Phía Vinmec: những gì người bệnh không tìm thấy.
+async function openVinmec() {
+  let v;
+  try { v = await (await fetch("/api/vinmec")).json(); } catch { return toast("Không kết nối được máy chủ của bản mô phỏng."); }
+  const table = (head, rows) => rows.length
+    ? `<table><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr>${rows.join("")}</table>`
+    : '<p class="muted">Chưa có dữ liệu trong phiên này.</p>';
+  $("#vinmec-body").innerHTML = `
+    <h3>Câu tìm không ra</h3>${table(["Câu tìm (đã bỏ dấu)", "Số lần"], v.tim_khong_ra.map((r) => `<tr><td>${esc(r.cau_hoi)}</td><td>${r.so_lan}</td></tr>`))}
+    <h3>Chỉ số đang thiếu nội dung</h3>${table(["Mã chỉ số", "Số lần"], v.chi_so_thieu_noi_dung.map((r) => `<tr><td>${esc(r.ma)}</td><td>${r.so_lan}</td></tr>`))}
+    <h3>Câu hỏi đã gửi bác sĩ (câu giống nhau gom lại, bác sĩ trả lời một lần)</h3>${table(["Câu hỏi", "Chỉ số", "Số người hỏi", "Trùng với bài", "Đồng ý bổ sung kho"], v.cau_hoi_da_gui.map((r) => `<tr><td>${esc(r.cau_hoi)}</td><td>${esc(r.ma)}</td><td>${r.so_lan}</td><td>${esc(r.trung_voi.join(", ") || "Không")}</td><td>${r.dong_y_bo_sung_kho ? "Có" : "Không"}</td></tr>`))}`;
+  $("#vinmec").hidden = false;
 }
 
 // ---------- Hành động ----------
@@ -297,6 +397,10 @@ function scenario(n) {
   if (n === "2") { setMode("de-xuat"); resetTo("records"); push("result", { i: 0 }); }
   if (n === "3") { setMode("de-xuat"); push("community"); runSearch("men gan cao"); }
   if (n === "4") { setMode("de-xuat"); push("community"); runSearch("Bố tôi đột ngột khó nói, yếu chân tay"); }
+  if (n === "5") {
+    setMode("de-xuat"); resetTo("records"); push("result", { i: 1 });
+    push("ask", { row: state.reports[1].chi_so[0], stage: "input", words: "" });
+  }
 }
 
 function setMode(mode) {
@@ -355,6 +459,12 @@ document.addEventListener("click", (e) => {
       runSearch(row.ma, row);
       break;
     }
+    case "ask-row": push("ask", { row: state.reports[Number(d.i)].chi_so[Number(d.j)], stage: "input", words: "" }); break;
+    case "ask-search": push("ask", { row: current().params.row, stage: "input", words: current().params.query }); break;
+    case "draft": draftQuestion(); break;
+    case "send": sendQuestion(); break;
+    case "vinmec": openVinmec(); break;
+    case "close-vinmec": $("#vinmec").hidden = true; break;
     case "save-q": {
       const q = state.shownQuestions[Number(d.i)];
       if (q && !state.saved.includes(q)) { state.saved.push(q); renderSaved(); render(false); }
@@ -382,6 +492,7 @@ async function init() {
     const data = await (await fetch("/api/data")).json();
     state.corpus = data.bai;
     state.reports = data.phieu;
+    state.theoChiSo = data.theo_chi_so;
     state.coAi = data.co_ai;
   } catch {
     toast("Không tải được dữ liệu. Hãy mở trang qua máy chủ: python 05-prototype/app/server.py");
@@ -390,7 +501,7 @@ async function init() {
     ? "Máy chủ đã có API key: chế độ đề xuất gọi AI thật."
     : "Máy chủ chưa có API key: chế độ đề xuất chỉ hiện kết quả tìm theo từ khóa.";
   resetTo("home");
-  const link = location.hash.match(/^#kich-ban-([1-4])$/);
+  const link = location.hash.match(/^#kich-ban-([1-5])$/);
   if (link) scenario(link[1]);
 }
 

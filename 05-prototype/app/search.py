@@ -66,6 +66,53 @@ def clean_result(raw: dict, corpus: dict[str, dict]) -> dict:
     }
 
 
+def _code(text: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", guard.normalize(text))
+
+
+def lookup_by_code(code: str, corpus: dict[str, dict]) -> list[dict]:
+    """Bài có ghi đúng mã chỉ số (bỏ dấu, bỏ ký tự đặc biệt như %): dùng để hiện sẵn bài trên phiếu, không cần AI."""
+    key = _code(code)
+    return [item for item in corpus.values() if key and any(_code(c) == key for c in item["chi_so"])]
+
+
+def template_question(words: str, row: dict | None) -> str:
+    """Câu hỏi soạn sẵn khi không có AI: ghép đúng thông tin trên phiếu với lời người bệnh."""
+    parts = []
+    if row:
+        parts.append(f"Phiếu xét nghiệm của tôi có {row['ten']} ({row['ma']}) {row['ket_qua']} {row['don_vi']}, "
+                     f"khoảng tham chiếu {row['khoang_tham_chieu']}, được đánh dấu {row['co'] or 'không có cờ'}.")
+    if words.strip():
+        parts.append(words.strip().rstrip(".?") + ".")
+    parts.append("Bác sĩ giải thích giúp tôi chỉ số này có ý nghĩa gì với tôi và tôi cần làm gì tiếp theo?")
+    return " ".join(parts)
+
+
+def soan_cau_hoi(words: str, row: dict | None, corpus: dict[str, dict], ask) -> dict:
+    """ask(words, row) gọi model soạn câu hỏi gửi bác sĩ; None nghĩa là chưa có API key."""
+    kind = guard.classify_question(words) if words.strip() else guard.TRONG_PHAM_VI
+    result = {"loai": kind, "loi_ai": False, "cau_hoi_nhap": "", "trung": []}
+    if kind == guard.KHAN_CAP:
+        return result
+    try:
+        raw = ask(words, row)
+    except Exception:
+        raw = None
+    draft, same_ids = "", []
+    if raw is None:
+        result["loi_ai"] = True
+    else:
+        draft = str(raw.get("cau_hoi_nhap", "")).strip()
+        same_ids = [i for i in raw.get("trung_voi") or [] if i in corpus]
+    if not draft or not guard.check_question(draft)[0]:
+        draft = template_question(words, row)
+    if not same_ids and row:
+        same_ids = [item["id"] for item in lookup_by_code(row["ma"], corpus)]
+    result["cau_hoi_nhap"] = draft
+    result["trung"] = [corpus[i] for i in dict.fromkeys(same_ids)][:MAX_RESULTS]
+    return result
+
+
 def tra_loi(query: str, row: dict | None, corpus: dict[str, dict], ask) -> dict:
     """ask(query, row) gọi model và trả về dict thô; None nghĩa là chưa có API key."""
     kind = guard.classify_question(query)

@@ -66,6 +66,23 @@ def classify_question(question: str) -> str:
     return TRONG_PHAM_VI
 
 
+# Câu hỏi người bệnh gửi bác sĩ được phép hỏi về thuốc, điều trị; chỉ không được khẳng định bệnh hay trấn an.
+FORBIDDEN_QUESTION_PATTERNS = [
+    r"ban (dang )?bi ", r"ban co the bi", r"ban (co the )?mac", r"khong sao dau", r"yen tam",
+]
+
+
+def check_question(question: str) -> tuple[bool, str]:
+    """Kiểm tra câu hỏi nháp do model soạn để gửi bác sĩ."""
+    if PHONE_PATTERN.search(question):
+        return False, "có số điện thoại"
+    text = normalize(question)
+    for p in FORBIDDEN_QUESTION_PATTERNS:
+        if re.search(rf"\b{p}", text):
+            return False, f"vượt ranh giới: {p}"
+    return True, ""
+
+
 def check_answer(answer: str) -> tuple[bool, str]:
     """Trả về (đạt, lý do). Không đạt thì giao diện ẩn câu trả lời."""
     if PHONE_PATTERN.search(answer):

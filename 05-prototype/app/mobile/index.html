@@ -29,6 +29,13 @@
         <button class="scenario" data-act="scenario" data-n="2">2. Tìm GLU từ phiếu kết quả (đề xuất)</button>
         <button class="scenario" data-act="scenario" data-n="3">3. Gõ "men gan cao" (đề xuất)</button>
         <button class="scenario" data-act="scenario" data-n="4">4. Mô tả triệu chứng khẩn (đề xuất)</button>
+        <button class="scenario" data-act="scenario" data-n="5">5. Chỉ số chưa có bài, hỏi bác sĩ (đề xuất)</button>
+      </section>
+
+      <section class="panel-box">
+        <h2>Vòng khép kín</h2>
+        <p class="small muted">① bài hiện sẵn trên phiếu → ② soạn câu hỏi gửi bác sĩ, chống trùng → ③ Vinmec thấy câu tìm không ra và chỉ số thiếu nội dung.</p>
+        <button class="scenario" data-act="vinmec">Xem phía Vinmec (③)</button>
       </section>
 
       <section class="panel-box">
@@ -55,6 +62,13 @@
       <div id="sheet-backdrop" class="sheet-backdrop" data-act="close-sheet" hidden></div>
       <div id="sheet" class="sheet" hidden></div>
       <div id="toast" class="toast" hidden></div>
+    </div>
+  </div>
+  <div id="vinmec" class="vinmec" hidden>
+    <div class="vinmec-card">
+      <div class="vinmec-head"><h2>Phía Vinmec (mô phỏng): người bệnh đang không tìm thấy gì</h2><button data-act="close-vinmec">Đóng</button></div>
+      <p class="small muted">Dữ liệu chỉ có trong phiên chạy máy chủ này, không ghi ra file. Khi làm thật cần ẩn danh và có sự đồng ý của người bệnh (RR09).</p>
+      <div id="vinmec-body"></div>
     </div>
   </div>
   <script src="app.js"></script>

@@ -11,6 +11,8 @@ Prototype không đưa lời khuyên y khoa và không tự giải thích kết 
 | Model viết lý do hoặc câu hỏi vượt ranh giới | Để trống lý do; bỏ câu hỏi đó | Không hiện câu bị chặn | Như trên | Không áp dụng | `test_search.py` |
 | Model đưa id bài không có trong kho hoặc tên mục bịa | Bỏ bài hoặc bỏ tên mục | Không hiện | Không áp dụng | Không áp dụng | `test_search.py` |
 | Câu hỏi về dịch vụ (giờ, chi phí, thủ tục) | Prototype không có thông tin dịch vụ; model bị cấm nêu | Phần "Bước tiếp theo" luôn hiển thị | "Gửi yêu cầu CSKH 24/07", "Gọi bệnh viện nơi bạn khám" (mô phỏng, theo đúng mục Liên hệ của MyVinmec) | Quan sát O9, 19/10/2026 | Bấm các nút trong phần Bước tiếp theo |
+| Lời người bệnh hoặc câu hỏi gửi bác sĩ mô tả triệu chứng khẩn cấp | Không soạn, không gửi câu hỏi | Thông điệp khẩn cấp và số 115 như dòng đầu | Cấp cứu 115 | Như dòng đầu | `test_search.py`, `test_server.py` |
+| Đã gửi câu hỏi cho bác sĩ | Không có bác sĩ thật nhận câu hỏi trong bản mô phỏng | "Bản mô phỏng không có bác sĩ thật trả lời." | Phần "Vẫn cần hỏi thêm?" vẫn có tư vấn với bác sĩ, CSKH, gọi bệnh viện | Không áp dụng | Kịch bản 5 trong bản mô phỏng |
 | Lỗi API, thiếu key, mất mạng | Không có kết quả AI | "Chưa kết nối được dịch vụ AI. Bạn vẫn có thể xem kết quả tìm theo từ khóa hoặc dùng phần Bước tiếp theo." | Kết quả tìm theo từ khóa; phần Bước tiếp theo | Không áp dụng | `test_search.py`, `test_app.py` (chạy không có key) |
 
 Danh sách từ khóa khẩn cấp là của prototype, không phải tiêu chí phân loại cấp cứu đã thẩm định. Prototype không hiển thị số điện thoại nào ngoài 115. Bản thử không được tuyên bố đã được Vinmec thẩm định.
