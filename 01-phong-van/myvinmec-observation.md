@@ -2,7 +2,7 @@
 
 Trạng thái: ĐÃ QUAN SÁT. O2, O5, O8 và trợ lý AI chưa quan sát được, lý do ghi trong bảng.
 
-- Ngày, giờ quan sát: 19/10/2026, 05:40-05:49 (lượt 1) và 09:08-09:13 (lượt 2, kiểm thử tìm kiếm)
+- Ngày, giờ quan sát: 19/10/2026, 05:40-05:49 (lượt 1), 09:08-09:13 (lượt 2, kiểm thử tìm kiếm), 11:07-11:09 (lượt 3, chủ đề và chuyên mục)
 - Phiên bản app: MyVinmec v3.0.5 (ghi ở cuối trang Tài khoản)
 - Thiết bị: iPhone (iOS)
 - Trạng thái tài khoản: đã đăng nhập; chưa kết nối hồ sơ y tế Vinmec (chưa có mã PID)
@@ -20,7 +20,8 @@ Trạng thái: ĐÃ QUAN SÁT. O2, O5, O8 và trợ lý AI chưa quan sát đư�
 | O3 | Từ màn hình chính, tìm nơi xem kết quả | Xem trang chủ và mục "Tất cả dịch vụ" | Trang chủ có 12 dịch vụ; "Tất cả dịch vụ" có 13 (thêm Tham vấn tâm lý từ xa, Theo dõi Nội trú). Thanh dưới có 5 tab: Trang chủ, Hồ sơ, Đặt lịch, Thông báo, Tài khoản ([ảnh 1](anh-myvinmec/O3-trang-chu.png), [ảnh 2](anh-myvinmec/O3-tat-ca-dich-vu.png), [ảnh 3](anh-myvinmec/O3-trang-chu-tin-moi.png)) | Không dịch vụ nào trên trang chủ mang tên "Kết quả" | Chưa mở tab Hồ sơ |
 | O4 | Kết nối hồ sơ bằng mã y tế (PID) | Mở Nhắc lịch uống thuốc và Sổ tiêm | Cả hai báo không có hồ sơ: "Không tìm thấy hồ sơ sức khỏe để xem đơn thuốc tại Vinmec", "Vui lòng kết nối hồ sơ y tế Vinmec để theo dõi thông tin tiêm chủng" ([ảnh 1](anh-myvinmec/O4-don-thuoc-chua-ket-noi-ho-so.png), [ảnh 2](anh-myvinmec/O4-so-tiem-chua-ket-noi-ho-so.png)) | Các tính năng dùng dữ liệu cá nhân đều cần kết nối hồ sơ trước | Không có mã PID nên dừng ở màn hình yêu cầu |
 | O5 | Xem cách trình bày kết quả | Không thực hiện | | | Tài khoản chưa kết nối hồ sơ, không có kết quả để xem |
-| O6 | Tìm cách hỏi về kết quả | Mở Cộng đồng hỏi đáp bác sĩ; tìm kiếm 3 từ khóa ở lượt 1 và 4 từ khóa ở lượt 2 (bảng kiểm thử bên dưới) | Màn hình ghi "20.915 Câu hỏi được bác sĩ giải đáp", "21.482 Chủ đề sức khỏe nổi bật". Có ô tìm kiếm "Hãy tìm vấn đề của bạn!" ([ảnh 1](anh-myvinmec/O6-cong-dong-hoi-dap.png), [ảnh 2](anh-myvinmec/O6-cong-dong-chuyen-khoa.png)) | Tìm kiếm không trả kết quả hoặc trả kết quả lệch ý; một kết quả mở sai bài | Chưa thử đặt câu hỏi mới; chưa thử trợ lý AI |
+| O6 | Tìm cách hỏi về kết quả | Mở Cộng đồng hỏi đáp bác sĩ; tìm kiếm 3 từ khóa ở lượt 1 và 4 từ khóa ở lượt 2 (bảng kiểm thử bên dưới) | Màn hình ghi "20.915 Câu hỏi được bác sĩ giải đáp", "21.482 Chủ đề sức khỏe nổi bật". Có ô tìm kiếm "Hãy tìm vấn đề của bạn!" ([ảnh 1](anh-myvinmec/O6-cong-dong-hoi-dap.png), [ảnh 2](anh-myvinmec/O6-cong-dong-chuyen-khoa.png)) | Tìm kiếm không trả kết quả hoặc trả kết quả lệch ý; một kết quả mở sai bài | Chưa thử trợ lý AI |
+| O6b | (Lượt 3) Xem chủ đề và chuyên mục trong Cộng đồng hỏi đáp | Mở rộng danh sách "Chủ đề được hỏi nhiều nhất"; mở chuyên mục Tim mạch; tìm cách đặt câu hỏi mới | Danh sách chủ đề gồm đúng 12 mục: Tiêu hóa gan mật, Ung bướu, Sản phụ khoa, Nhi, Cơ xương khớp, Tim mạch, Ung thư vú, Tiêm chủng, Dinh dưỡng, Da liễu, Nội tiết, Làm đẹp ([ảnh](anh-myvinmec/O6-chu-de-hoi-nhieu-nhat.png)). Chuyên mục Tim mạch có 3 tab "Hỏi đáp bác sĩ", "Kiến thức", "Sản phẩm gợi ý"; khung "Đội ngũ chuyên gia: 100% các câu hỏi được trả lời bởi các chuyên gia y tế Vinmec"; thẻ tên bác sĩ; 3 câu hỏi đầu danh sách đều đề ngày 08/07/2024; câu hỏi hiển thị công khai kèm tuổi và chỉ số sức khỏe người hỏi tự kể ([ảnh](anh-myvinmec/O6-chuyen-muc-tim-mach.png)) | Chưa tìm thấy nút đặt câu hỏi mới; bấm thẻ bác sĩ không mở được luồng hỏi bác sĩ đó (theo ghi nhận của ứng viên); câu hỏi phải nằm trong một trong 12 chủ đề cố định | Chưa biết danh sách hỏi đáp sắp xếp theo tiêu chí nào |
 | O7 | Tìm cách đặt tư vấn hoặc tái khám | Mở một bài viết từ kết quả tìm kiếm | Cuối bài viết có hai nút "Tư vấn với bác sĩ" và "Đăng ký khám" ([ảnh](anh-myvinmec/O6-glu-ket-qua-2-mo-dung-bai.png)) | | Không đi tới bước xác nhận |
 | O8 | Xem cài đặt thông báo | Không thực hiện | Có tab Thông báo | | Chưa mở |
 | O9 | Tìm trợ giúp, số tổng đài | Mở Liên hệ và trang Tài khoản | Liên hệ có "Đặt lịch chủ động", "Cổng dịch vụ CSKH 24/07" (nút Gửi yêu cầu) và danh sách bệnh viện, mỗi bệnh viện một nút gọi ([ảnh](anh-myvinmec/O9-lien-he.png)). Cuối trang Tài khoản ghi 0243.975.0028 / info@vinmec.com | Không có một số tổng đài chung trong mục Liên hệ; người dùng chọn bệnh viện để gọi | |
@@ -51,12 +52,13 @@ Phần này là suy luận của người nghiên cứu, tách khỏi quan sát 
 - Từ O6 và bảng kiểm thử: Vinmec có kho nội dung do bác sĩ viết hoặc tư vấn, nhưng tìm kiếm trong app không đưa người hỏi tới nội dung đó với các câu hỏi thường gặp sau xét nghiệm máu. Một phần là lỗi dữ liệu (kết quả mở sai bài), một phần là tìm kiếm không hiểu chữ viết tắt trên phiếu (GLU, ALT), câu gõ thiếu chữ hoặc không dấu. Giả thuyết: người bệnh vừa nhận kết quả sẽ rời app để tìm trên mạng. Cần kiểm chứng bằng phỏng vấn P1-P3.
 - Từ O1, O6, O9: app có nhiều kênh hỗ trợ (trợ lý AI, Cộng đồng hỏi đáp, CSKH 24/07, gọi từng bệnh viện, nút tư vấn trong bài viết). Vì vậy không thể nói người bệnh thiếu nơi để hỏi; vấn đề nằm ở việc tìm tới đúng nội dung và đúng kênh.
 - Từ O4: tài khoản chưa kết nối hồ sơ không xem được dữ liệu cá nhân. Quan sát này chưa cho biết màn hình kết quả trông thế nào.
+- Từ O6b: mục Cộng đồng hỏi đáp chủ yếu để đọc; người bệnh không có đường gửi câu hỏi của mình tới bác sĩ ngay trong mục này. Câu hỏi người khác đăng công khai kèm chỉ số sức khỏe, nên một kênh gửi câu hỏi cần là kênh riêng tư.
 
 ## Giới hạn
 
 - Một thiết bị, một tài khoản chưa kết nối hồ sơ; không xem được màn hình kết quả thật.
 - 3 từ khóa ở lượt 1 và 4 từ khóa ở lượt 2; lượt 2 không có ảnh chụp.
-- Chưa thử trợ lý AI, chưa thử đặt câu hỏi mới trong Cộng đồng hỏi đáp, chưa thử ô tìm kiếm ở trang chủ.
+- Chưa thử trợ lý AI, chưa thử ô tìm kiếm ở trang chủ. Việc không tìm thấy nút đặt câu hỏi mới là ghi nhận trong một lượt xem, chưa đối chiếu với hướng dẫn chính thức của Vinmec.
 
 ## Quy tắc
 

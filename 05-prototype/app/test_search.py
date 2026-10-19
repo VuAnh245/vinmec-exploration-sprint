@@ -127,3 +127,30 @@ def test_draft_stops_on_urgent_words():
     def ask(words, row):
         raise AssertionError("không được gọi model")
     assert soan_cau_hoi("tôi đang khó thở", GLU_ROW, CORPUS, ask)["loai"] == guard.KHAN_CAP
+
+
+DOCTORS = __import__("search").load_doctors()
+
+
+@pytest.mark.parametrize("text, row, expected_first", [
+    ("men gan cao", None, "D04"),
+    ("mất ngủ kéo dài", None, "D07"),
+    ("", GLU_ROW, "D03"),
+])
+def test_match_doctors_by_field_and_report_code(text, row, expected_first):
+    from search import match_doctors
+    result = match_doctors(text, row, DOCTORS)
+    assert result and result[0]["id"] == expected_first and result[0]["ly_do"].startswith("Chuyên khoa")
+
+
+def test_match_doctors_returns_nothing_without_signal():
+    from search import match_doctors
+    assert match_doctors("xin chào", None, DOCTORS) == []
+
+
+def test_draft_suggests_specialty_and_doctors():
+    from search import soan_cau_hoi
+    raw = {"cau_hoi_nhap": "Tôi muốn hỏi về GLU 6.4 mmol/L.", "trung_voi": [], "chuyen_khoa": "Khoa không có"}
+    result = soan_cau_hoi("", GLU_ROW, CORPUS, lambda w, r: raw, DOCTORS)
+    assert result["chuyen_khoa"] == "Nội tiết - Đái tháo đường"
+    assert result["bac_si"][0]["id"] == "D03"

@@ -1,9 +1,9 @@
 # Kế hoạch thử người dùng
 
-Trạng thái: ĐÃ CHỐT KẾ HOẠCH CHO PROTO-V3, CHƯA THỰC HIỆN. Đề yêu cầu 2-3 người; có thể mời lại người đã phỏng vấn và ghi nhận ảnh hưởng của việc họ đã quen chủ đề.
+Trạng thái: ĐÃ CHỐT KẾ HOẠCH CHO PROTO-V3.2, CHƯA THỰC HIỆN. Đề yêu cầu 2-3 người; có thể mời lại người đã phỏng vấn và ghi nhận ảnh hưởng của việc họ đã quen chủ đề.
 
-- Phiên bản prototype: proto-v3 (gắn tag `proto-v3` trước phiên đầu tiên; phiên sau sửa ghi phiên bản mới)
-- Người thử: người từng nhận kết quả xét nghiệm hoặc chẩn đoán hình ảnh. Cách mời: [ỨNG VIÊN ĐIỀN]
+- Phiên bản prototype: proto-v3.2 (gắn tag `proto-v3.2` trước phiên đầu tiên; phiên sau sửa ghi phiên bản mới)
+- Người thử: người từng nhận kết quả xét nghiệm hoặc chẩn đoán hình ảnh. Cách mời: hỏi lại người tham gia P01-P03 trước (cả ba đã dùng Cộng đồng hỏi đáp bác sĩ trên MyVinmec); ghi trong phiếu U nếu người thử là một người P và ghi ảnh hưởng của việc đã quen chủ đề. Nếu chưa đủ 2-3 người, mời người quen từng nhận kết quả trong 12 tháng gần đây, nhắn hẹn trước một buổi 20 phút, nói rõ đây là bài tập ứng tuyển và không hỏi thông tin sức khỏe.
 - Hình thức: 15-20 phút, gặp trực tiếp hoặc chia sẻ màn hình; dùng bản mô phỏng điện thoại (`python 05-prototype/app/server.py`) ở chế độ "Thiết kế đề xuất", máy chủ có API key. Có thể cho người thử xem chế độ "Hiện trạng" trước để so sánh, ghi lại nếu có làm.
 - Đồng ý tham gia và dùng ghi chép ẩn danh: xác nhận ở đầu mỗi phiếu U.
 
@@ -22,7 +22,7 @@ Mọi phiên bắt đầu từ Trang chủ, dùng phiếu "Xét nghiệm sinh h�
 | T3. Hỏi ngoài phạm vi | "Bạn lo kết quả này nghiêm trọng. Hãy hỏi công cụ xem bạn có cần dùng thuốc không." | Công cụ không tư vấn; người thử nói được bước tiếp theo (gửi câu hỏi cho bác sĩ, tư vấn với bác sĩ, CSKH, gọi bệnh viện) | Số lần AI vượt ranh giới (mục tiêu 0); người thử nói đúng bước tiếp theo có/không | Không hỗ trợ; chỉ quan sát |
 | T4. Hỏi bác sĩ khi chưa có bài | "Phiếu tổng phân tích tế bào máu của bạn có WBC gắn chữ H. Hãy tìm hiểu, nếu chưa đủ thì gửi câu hỏi cho bác sĩ." (Đường đi: tab Hồ sơ, phiếu tế bào máu, nút "Hỏi bác sĩ" dưới WBC) | Gửi được câu hỏi; câu hỏi có đúng tên chỉ số, giá trị, khoảng tham chiếu | Gửi được có/không; người thử có sửa câu nháp không, sửa gì; có tích ô đồng ý bổ sung kho không và vì sao | Kẹt quá 2 phút |
 
-Trước phiên đầu tiên, ứng viên tự chạy bộ 5 từ khóa trong `findings.md` với AI và điền cột "Tìm theo ý nghĩa (AI)".
+Trước phiên đầu tiên, ứng viên tự chạy bộ 5 từ khóa trong `findings.md` với AI và điền cột "Tìm theo ý nghĩa (AI)". Lần chạy ngày 19/10/2026 bị lỗi 429 (hết credit API); kết quả chạy thử nội bộ T1-T4 ở chế độ không có AI ghi trong `findings.md`.
 
 ## Câu hỏi sau phiên
 

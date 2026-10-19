@@ -91,5 +91,13 @@ def test_closed_loop_records_gaps_for_vinmec(base_url):
     assert len(view["cau_hoi_da_gui"]) == 1 and view["cau_hoi_da_gui"][0]["so_lan"] == 2
 
 
+def test_question_without_report_row_keeps_target(base_url):
+    server.STORE.__init__()
+    post_to(base_url, "/api/send", {"cau_hoi": "Mất ngủ kéo dài thì nên khám chuyên khoa nào?",
+                                    "gui_toi": "Bác sĩ chuyên khoa Tim mạch"})
+    sent = get(base_url, "/api/vinmec")["cau_hoi_da_gui"][0]
+    assert sent["gui_toi"] == "Bác sĩ chuyên khoa Tim mạch" and sent["ma"] == ""
+
+
 def test_send_refuses_urgent_text(base_url):
     assert post_to(base_url, "/api/send", {"cau_hoi": "Tôi đang đau ngực"})["da_gui"] is False

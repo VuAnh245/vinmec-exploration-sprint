@@ -1,6 +1,6 @@
 # Bộ câu hỏi phỏng vấn: Nhận kết quả
 
-Trạng thái: ĐÃ CHỐT v1 (17/10/2026), CHƯA DÙNG PHỎNG VẤN.
+Trạng thái: ĐÃ CHỐT v1 (17/10/2026), ĐÃ DÙNG cho phỏng vấn P01-P03 ngày 18/10/2026.
 
 - Khoảnh khắc: từ lúc người bệnh biết đã có kết quả xét nghiệm hoặc chẩn đoán hình ảnh đến lúc họ biết mình cần làm gì tiếp về mặt dịch vụ.
 - Người tham gia: từng nhận kết quả tại bất kỳ cơ sở y tế nào trong khoảng 12 tháng gần đây. Có thể là người tự đi khám hoặc người nhận kết quả thay người thân.

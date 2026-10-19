@@ -1,0 +1,13 @@
+{
+  "nhan": "DỮ LIỆU MÔ PHỎNG: bác sĩ, lĩnh vực và số câu đã trả lời đều là giả định để thử giao diện, không phải bác sĩ thật của Vinmec",
+  "bac_si": [
+    {"id": "D01", "ten": "BS. An (mô phỏng)", "chuc_danh": "ThS.BS", "chuyen_khoa": "Tim mạch", "linh_vuc": ["huyết áp", "nhịp tim", "mỡ máu", "cholesterol", "tim đập nhanh", "khó thở khi gắng sức"], "so_cau_tra_loi": 412},
+    {"id": "D02", "ten": "BS. Bình (mô phỏng)", "chuc_danh": "BSCKII", "chuyen_khoa": "Tim mạch", "linh_vuc": ["suy tim", "điện tâm đồ", "siêu âm tim", "huyết áp"], "so_cau_tra_loi": 287},
+    {"id": "D03", "ten": "BS. Chi (mô phỏng)", "chuc_danh": "BSCKI", "chuyen_khoa": "Nội tiết - Đái tháo đường", "linh_vuc": ["đường huyết", "glucose", "tiểu đường", "HbA1c", "tuyến giáp"], "so_cau_tra_loi": 356},
+    {"id": "D04", "ten": "BS. Dũng (mô phỏng)", "chuc_danh": "ThS.BS", "chuyen_khoa": "Tiêu hóa - Gan mật", "linh_vuc": ["men gan", "ALT", "AST", "dạ dày", "ợ nóng", "đau bụng", "gan nhiễm mỡ"], "so_cau_tra_loi": 398},
+    {"id": "D05", "ten": "BS. Hà (mô phỏng)", "chuc_danh": "BSCKI", "chuyen_khoa": "Cơ xương khớp", "linh_vuc": ["đau lưng", "cột sống", "khớp gối", "đau vai gáy", "acid uric"], "so_cau_tra_loi": 341},
+    {"id": "D06", "ten": "BS. Khoa (mô phỏng)", "chuc_danh": "ThS.BS", "chuyen_khoa": "Phục hồi chức năng", "linh_vuc": ["hồi phục", "vật lý trị liệu", "sau phẫu thuật", "tập phục hồi"], "so_cau_tra_loi": 175},
+    {"id": "D07", "ten": "BS. Lan (mô phỏng)", "chuc_danh": "BSCKI", "chuyen_khoa": "Thần kinh", "linh_vuc": ["mất ngủ", "đau đầu", "chóng mặt", "tê bì tay chân"], "so_cau_tra_loi": 223},
+    {"id": "D08", "ten": "BS. Minh (mô phỏng)", "chuc_danh": "ThS.BS", "chuyen_khoa": "Huyết học - Xét nghiệm", "linh_vuc": ["bạch cầu", "tiểu cầu", "công thức máu", "WBC", "PLT", "NEUT", "thiếu máu"], "so_cau_tra_loi": 164}
+  ]
+}

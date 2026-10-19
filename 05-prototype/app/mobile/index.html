@@ -16,6 +16,7 @@
         <button data-act="mode" data-mode="hien-trang" class="on">Hiện trạng</button>
         <button data-act="mode" data-mode="de-xuat">Thiết kế đề xuất</button>
       </div>
+      <p class="small muted">Đổi chế độ giữ nguyên màn hình đang xem, để so trước và sau ngay tại chỗ. Thay đổi mới có viền nét đứt và nhãn MỚI.</p>
 
       <section class="panel-box">
         <h2 id="note-title">Màn hình</h2>
@@ -24,9 +25,20 @@
       </section>
 
       <section class="panel-box">
+        <h2>Điểm đau → thay đổi</h2>
+        <div class="pain-list">
+          <div class="pain"><div><b>ĐĐ2</b> Tìm câu hỏi của mình, không có kết quả<small>P01-01, P02-01, P03-01; kiểm thử 6/7 lượt</small></div><span><button data-act="pain" data-id="tim-khong-ra" data-mode="hien-trang">Trước</button><button data-act="pain" data-id="tim-khong-ra" data-mode="de-xuat">Sau</button></span></div>
+          <div class="pain"><div><b>ĐĐ7</b> Tràn thông tin, phải lướt và tìm nhiều lần<small>P02-02; O6b</small></div><span><button data-act="pain" data-id="tran-thong-tin" data-mode="hien-trang">Trước</button><button data-act="pain" data-id="tran-thong-tin" data-mode="de-xuat">Sau</button></span></div>
+          <div class="pain"><div><b>ĐĐ8</b> Không gửi được câu hỏi, thẻ bác sĩ không hỏi được<small>I07; O6b</small></div><span><button data-act="pain" data-id="khong-hoi-duoc" data-mode="hien-trang">Trước</button><button data-act="pain" data-id="khong-hoi-duoc" data-mode="de-xuat">Sau</button></span></div>
+          <div class="pain"><div><b>ĐĐ9</b> 12 chủ đề cố định<small>I08; O6b</small></div><span><button data-act="pain" data-id="chu-de" data-mode="hien-trang">Trước</button><button data-act="pain" data-id="chu-de" data-mode="de-xuat">Sau</button></span></div>
+          <div class="pain"><div><b>ĐĐ3, ĐĐ4</b> "GLU" ra bài lệch ý, mở sai bài<small>Kiểm thử tìm kiếm, ảnh O6</small></div><span><button data-act="pain" data-id="glu" data-mode="hien-trang">Trước</button><button data-act="pain" data-id="glu" data-mode="de-xuat">Sau</button></span></div>
+        </div>
+      </section>
+
+      <section class="panel-box">
         <h2>Kịch bản demo</h2>
         <button class="scenario" data-act="scenario" data-n="1">1. Tìm "GLU" trên app hiện tại</button>
-        <button class="scenario" data-act="scenario" data-n="2">2. Tìm GLU từ phiếu kết quả (đề xuất)</button>
+        <button class="scenario" data-act="scenario" data-n="2">2. Bài hiện sẵn trên phiếu kết quả (đề xuất)</button>
         <button class="scenario" data-act="scenario" data-n="3">3. Gõ "men gan cao" (đề xuất)</button>
         <button class="scenario" data-act="scenario" data-n="4">4. Mô tả triệu chứng khẩn (đề xuất)</button>
         <button class="scenario" data-act="scenario" data-n="5">5. Chỉ số chưa có bài, hỏi bác sĩ (đề xuất)</button>
@@ -34,7 +46,7 @@
 
       <section class="panel-box">
         <h2>Vòng khép kín</h2>
-        <p class="small muted">① bài hiện sẵn trên phiếu → ② soạn câu hỏi gửi bác sĩ, chống trùng → ③ Vinmec thấy câu tìm không ra và chỉ số thiếu nội dung.</p>
+        <p class="small muted">① bài hiện sẵn trên phiếu → ② đặt câu hỏi cho bác sĩ, không cần chọn chủ đề, có chống trùng → ③ Vinmec thấy câu tìm không ra và chỉ số thiếu nội dung.</p>
         <button class="scenario" data-act="vinmec">Xem phía Vinmec (③)</button>
       </section>
 
@@ -51,6 +63,7 @@
       <div class="statusbar"><span>09:41</span><span>▂▄▆ ᯤ ▭</span></div>
       <div class="mock-label">BẢN MÔ PHỎNG · không phải ứng dụng thật</div>
       <div id="screen" class="screen"></div>
+      <div id="bottom" class="bottom" hidden></div>
       <nav id="tabbar" class="tabbar">
         <button data-act="tab" data-tab="home"><span>▦</span>Trang chủ</button>
         <button data-act="tab" data-tab="records"><span>🪪</span>Hồ sơ</button>
@@ -59,11 +72,13 @@
         <button data-act="tab" data-tab="account"><span>👤</span>Tài khoản</button>
       </nav>
       <button class="ai-bubble" data-act="ai" aria-label="Trợ lý AI">Ai</button>
-      <div id="sheet-backdrop" class="sheet-backdrop" data-act="close-sheet" hidden></div>
-      <div id="sheet" class="sheet" hidden></div>
-      <div id="toast" class="toast" hidden></div>
+      <div id="mode-flash" class="mode-flash"></div>
+      <div id="sheet-backdrop" class="sheet-backdrop" data-act="close-sheet"></div>
+      <div id="sheet" class="sheet"></div>
+      <div id="toast" class="toast"></div>
     </div>
   </div>
+
   <div id="vinmec" class="vinmec" hidden>
     <div class="vinmec-card">
       <div class="vinmec-head"><h2>Phía Vinmec (mô phỏng): người bệnh đang không tìm thấy gì</h2><button data-act="close-vinmec">Đóng</button></div>

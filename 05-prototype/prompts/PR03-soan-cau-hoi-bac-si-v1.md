@@ -1,12 +1,12 @@
-# PR03: Soạn câu hỏi gửi bác sĩ và chống trùng (v1)
+# PR03: Soạn câu hỏi gửi bác sĩ và chống trùng (v1, thay bằng v2 từ proto-v3.2)
 
 - ID / phiên bản: PR03 v1, dùng cùng PR02 từ proto-v3
 - Lý do: need statement đổi kết quả mong muốn thành "rút ngắn thời gian từ lúc có kết quả đến lúc có câu trả lời đáng tin". Khi kho chưa có câu trả lời, người bệnh cần hỏi được bác sĩ một câu rõ ràng; khi kho đã có, cần biết trước khi hỏi lại.
-- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Ghi model thật đã dùng khi thử: [CHƯA ĐIỀN]
+- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Model thật: không có lượt chạy nào được ghi lại; prompt đã được thay trước khi thử.
 - Input được phép: lời người bệnh (đã qua `guard.classify_question`; câu khẩn cấp không tới model), một dòng trên phiếu mô phỏng, chỉ mục 11 bài.
 - Giới hạn output: `search.soan_cau_hoi` thay câu nháp bằng mẫu cố định nếu câu nháp rỗng, có số điện thoại, khẳng định bệnh hay trấn an (`guard.check_question`); chỉ giữ id có trong kho.
 - Phiên bản prototype sử dụng: proto-v3
-- Kết quả thử và hạn chế: [CHƯA CÓ]
+- Kết quả thử và hạn chế: không thử với người dùng; thay bằng v2 từ proto-v3.2.
 
 App đọc hai khối `text` bên dưới theo thứ tự: khối đầu là system prompt, khối sau là user prompt template.
 

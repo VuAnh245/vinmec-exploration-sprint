@@ -1,7 +1,7 @@
 # PR01: Giải thích phiếu kết quả (v1, không còn dùng từ proto-v2)
 
 - ID / phiên bản: PR01 v1
-- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Ghi model thật đã dùng khi thử: [CHƯA ĐIỀN]
+- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Model thật: không có lượt chạy nào được ghi lại; prompt đã được thay trước khi thử.
 - Mục đích: giúp người bệnh đọc phiếu kết quả và chuẩn bị câu hỏi cho bác sĩ, không diễn giải bệnh.
 - Input được phép: một phiếu kết quả mô phỏng trong `mock-data/` và câu hỏi của người dùng đã qua lớp lọc `guard.classify_question`.
 - Giới hạn output: câu trả lời đi qua `guard.check_answer`; số điện thoại và thông tin dịch vụ chỉ lấy từ cấu hình trong `app.py`.

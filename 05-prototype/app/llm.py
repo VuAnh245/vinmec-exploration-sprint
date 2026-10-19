@@ -15,7 +15,7 @@ import search
 ROOT = Path(__file__).resolve().parents[2]
 PROMPT_DIR = Path(__file__).resolve().parent.parent / "prompts"
 PROMPT_SEARCH = PROMPT_DIR / "PR02-tim-va-dan-nguon-v1.md"
-PROMPT_DRAFT = PROMPT_DIR / "PR03-soan-cau-hoi-bac-si-v1.md"
+PROMPT_DRAFT = PROMPT_DIR / "PR03-soan-cau-hoi-bac-si-v2.md"
 DEFAULT_MODEL = "gpt-4o-mini"
 
 
@@ -66,7 +66,9 @@ def ask(query: str, row: dict | None, corpus: dict[str, dict],
     return ask_json(PROMPT_SEARCH, {**_shared(row, corpus), "cau_hoi": query}, api_key, model)
 
 
-def ask_draft(words: str, row: dict | None, corpus: dict[str, dict],
+def ask_draft(words: str, row: dict | None, corpus: dict[str, dict], specialty_list: list[str],
               api_key: str | None, model: str | None = None) -> dict | None:
-    """PR03: soạn câu hỏi gửi bác sĩ và tìm bài đã trả lời câu tương tự."""
-    return ask_json(PROMPT_DRAFT, {**_shared(row, corpus), "loi_nguoi_benh": words}, api_key, model)
+    """PR03 v2: soạn câu hỏi gửi bác sĩ, tìm bài đã trả lời câu tương tự, gợi ý chuyên khoa."""
+    values = {**_shared(row, corpus), "loi_nguoi_benh": words,
+              "chuyen_khoa": json.dumps(specialty_list, ensure_ascii=False)}
+    return ask_json(PROMPT_DRAFT, values, api_key, model)

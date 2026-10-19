@@ -1,6 +1,6 @@
 # Chuyển tiếp khi ngoài phạm vi hoặc khẩn cấp
 
-Trạng thái: ĐÃ THIẾT KẾ VÀ CÀI TRONG PROTO-V2, CHƯA ĐƯỢC BÁC SĨ HAY VINMEC THẨM ĐỊNH.
+Trạng thái: ĐÃ THIẾT KẾ VÀ CÀI TRONG PROTO-V3, CHƯA ĐƯỢC BÁC SĨ HAY VINMEC THẨM ĐỊNH.
 
 Prototype không đưa lời khuyên y khoa và không tự giải thích kết quả; AI chỉ chọn bài bác sĩ Vinmec đã viết. Mọi câu hỏi đi qua `guard.classify_question` trước khi tới model; mọi lý do, câu hỏi gợi ý do model viết đi qua `guard.check_answer` trước khi hiển thị. Thông điệp dưới đây chép nguyên văn từ `05-prototype/app/app.py`.
 

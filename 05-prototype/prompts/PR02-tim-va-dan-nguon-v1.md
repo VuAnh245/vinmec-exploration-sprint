@@ -2,11 +2,11 @@
 
 - ID / phiên bản: PR02 v1, thay PR01 từ proto-v2
 - Lý do đổi: need statement chuyển sang "người bệnh không tìm được nội dung phù hợp trong kho có sẵn" (xem `03-need-statement/need-statement.md`). AI chuyển từ tự giải thích phiếu sang chọn bài bác sĩ Vinmec đã viết và dẫn link.
-- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Ghi model thật đã dùng khi thử: [CHƯA ĐIỀN]
+- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Model thật: `gpt-4o-mini` (đặt trong `.env`). Lượt chạy ngày 19/10/2026 bị API trả lỗi 429 (tài khoản hết credit), chưa có lượt gọi thành công nào được ghi lại.
 - Input được phép: chỉ mục 11 bài trong `nguon-noi-dung/kho-bai-viet-vinmec.json` (không gửi đường dẫn), một dòng trên phiếu mô phỏng nếu người dùng hỏi từ phiếu, và câu hỏi đã qua `guard.classify_question`.
 - Giới hạn output: `search.clean_result` chỉ giữ id có trong kho, tối đa 3 bài; tên mục phải trùng với mục có thật trong bài; lý do và câu hỏi đi qua `guard.check_answer`. Đường dẫn lấy từ kho, không lấy từ model.
 - Phiên bản prototype sử dụng: proto-v2
-- Kết quả thử và hạn chế: [CHƯA CÓ]
+- Kết quả thử và hạn chế: chưa có kết quả từ model (xem dòng model). Chạy thử nội bộ ngày 19/10/2026 ở nhánh dự phòng: vẫn có kết quả tìm theo từ khóa và câu hỏi gợi ý; câu "chỉ số men gan ALT" không ra kết quả khi không có AI (`user-testing/findings.md`). Chưa thử với người dùng.
 
 App đọc hai khối `text` bên dưới theo thứ tự: khối đầu là system prompt, khối sau là user prompt template.
 

@@ -27,6 +27,7 @@ MAX_TEXT = 500
 MAX_RECORDS = 200
 
 CORPUS = search.load_corpus()
+DOCTORS = search.load_doctors()
 
 
 def load_reports() -> list[dict]:
@@ -49,7 +50,8 @@ class Store:
             if row:
                 self.missing_codes[row["ma"]] += 1
 
-    def record_sent(self, question: str, row: dict | None, consent: bool, same_ids: list[str]) -> None:
+    def record_sent(self, question: str, row: dict | None, consent: bool, same_ids: list[str],
+                    target: str = "") -> None:
         """Câu hỏi giống hệt nhau (bỏ dấu) được gom lại để bác sĩ trả lời một lần."""
         key = guard.normalize(question)
         with self.lock:
@@ -59,7 +61,8 @@ class Store:
                 existing["dong_y_bo_sung_kho"] = existing["dong_y_bo_sung_kho"] or consent
             elif len(self.sent) < MAX_RECORDS:
                 self.sent.append({"khoa": key, "cau_hoi": question, "ma": row["ma"] if row else "",
-                                  "dong_y_bo_sung_kho": consent, "trung_voi": same_ids, "so_lan": 1})
+                                  "gui_toi": target, "dong_y_bo_sung_kho": consent, "trung_voi": same_ids,
+                                  "so_lan": 1})
             if row and not same_ids:
                 self.missing_codes[row["ma"]] += 1
 
@@ -81,7 +84,8 @@ def ask_model(query: str, row: dict | None) -> dict | None:
 
 
 def ask_draft(words: str, row: dict | None) -> dict | None:
-    return llm.ask_draft(words, row, CORPUS, os.environ.get("OPENAI_API_KEY"), os.environ.get("OPENAI_MODEL"))
+    return llm.ask_draft(words, row, CORPUS, search.specialties(DOCTORS),
+                         os.environ.get("OPENAI_API_KEY"), os.environ.get("OPENAI_MODEL"))
 
 
 def search_json(result: dict) -> dict:
@@ -132,7 +136,7 @@ class Handler(SimpleHTTPRequestHandler):
             reports = load_reports()
             by_code = {r["ma"]: [i["id"] for i in search.lookup_by_code(r["ma"], CORPUS)]
                        for report in reports for r in report["chi_so"]}
-            self.send_json({"bai": CORPUS, "phieu": reports, "theo_chi_so": by_code,
+            self.send_json({"bai": CORPUS, "phieu": reports, "theo_chi_so": by_code, "bac_si": DOCTORS,
                             "co_ai": bool(os.environ.get("OPENAI_API_KEY"))})
             return
         if self.path == "/api/vinmec":
@@ -157,10 +161,10 @@ class Handler(SimpleHTTPRequestHandler):
             result = search.tra_loi(query, row, CORPUS, ask_model)
             if found_nothing(result):
                 STORE.record_not_found(query, row)
-            self.send_json(search_json(result))
+            self.send_json({**search_json(result), "bac_si": search.match_doctors(query, row, DOCTORS)})
         elif self.path == "/api/draft":
             words = str(payload.get("loi_nguoi_benh", "")).strip()[:MAX_TEXT]
-            self.send_json(search.soan_cau_hoi(words, row, CORPUS, ask_draft))
+            self.send_json(search.soan_cau_hoi(words, row, CORPUS, ask_draft, DOCTORS))
         elif self.path == "/api/send":
             question = str(payload.get("cau_hoi", "")).strip()[:MAX_TEXT]
             if not question:
@@ -170,7 +174,8 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_json({"loai": guard.KHAN_CAP, "da_gui": False})
                 return
             same_ids = [i for i in payload.get("trung_voi") or [] if i in CORPUS]
-            STORE.record_sent(question, row, bool(payload.get("dong_y_bo_sung_kho")), same_ids)
+            target = str(payload.get("gui_toi", "")).strip()[:100]
+            STORE.record_sent(question, row, bool(payload.get("dong_y_bo_sung_kho")), same_ids, target)
             self.send_json({"loai": guard.TRONG_PHAM_VI, "da_gui": True})
         else:
             self.send_json({"loi": "không tìm thấy"}, 404)
@@ -181,7 +186,13 @@ def main(port: int = PORT) -> None:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8", errors="replace")
     llm.load_env_file()
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    # Trên Windows, cho phép dùng lại địa chỉ khiến hai máy chủ cùng mở một cổng và máy chủ cũ vẫn trả lời.
+    ThreadingHTTPServer.allow_reuse_address = False
+    try:
+        server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    except OSError:
+        print(f"Cổng {port} đang được dùng. Hãy tắt máy chủ cũ (Ctrl + C ở cửa sổ đang chạy) rồi chạy lại.")
+        return
     print(f"Mở http://localhost:{port}  (AI: {'có key' if os.environ.get('OPENAI_API_KEY') else 'chưa có key'})")
     try:
         server.serve_forever()
