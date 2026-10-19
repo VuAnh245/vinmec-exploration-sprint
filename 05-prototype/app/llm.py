@@ -1,6 +1,7 @@
 """Gọi model theo prompt PR02 (tìm và dẫn nguồn) và PR03 (soạn câu hỏi gửi bác sĩ).
 
-Dùng chung cho giao diện Streamlit và bản mô phỏng điện thoại.
+Dùng chung cho giao diện Streamlit và bản mô phỏng điện thoại. Model là Gemini, gọi qua endpoint
+tương thích OpenAI của Google nên vẫn dùng thư viện `openai`.
 """
 
 import json
@@ -16,7 +17,10 @@ ROOT = Path(__file__).resolve().parents[2]
 PROMPT_DIR = Path(__file__).resolve().parent.parent / "prompts"
 PROMPT_SEARCH = PROMPT_DIR / "PR02-tim-va-dan-nguon-v1.md"
 PROMPT_DRAFT = PROMPT_DIR / "PR03-soan-cau-hoi-bac-si-v2.md"
-DEFAULT_MODEL = "gpt-4o-mini"
+KEY_ENV = "GEMINI_API_KEY"
+MODEL_ENV = "GEMINI_MODEL"
+DEFAULT_MODEL = "gemini-3.5-flash"
+BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 
 def load_env_file(path: Path = ROOT / ".env") -> None:
@@ -42,7 +46,7 @@ def ask_json(prompt_file: Path, values: dict[str, str], api_key: str | None, mod
     system_prompt, user_prompt = load_prompts(prompt_file)
     for key, value in values.items():
         user_prompt = user_prompt.replace("{" + key + "}", value)
-    response = OpenAI(api_key=api_key).chat.completions.create(
+    response = OpenAI(api_key=api_key, base_url=BASE_URL).chat.completions.create(
         model=model or DEFAULT_MODEL,
         messages=[
             {"role": "system", "content": system_prompt},
@@ -50,7 +54,13 @@ def ask_json(prompt_file: Path, values: dict[str, str], api_key: str | None, mod
         ],
         response_format={"type": "json_object"},
     )
-    return json.loads(response.choices[0].message.content)
+    return parse_json(response.choices[0].message.content)
+
+
+def parse_json(text: str) -> dict:
+    """Gemini đôi khi bọc JSON trong khối ```json; bỏ phần bọc trước khi đọc."""
+    match = re.search(r"\{.*\}", text or "", re.S)
+    return json.loads(match.group(0) if match else text)
 
 
 def _shared(row: dict | None, corpus: dict[str, dict]) -> dict[str, str]:

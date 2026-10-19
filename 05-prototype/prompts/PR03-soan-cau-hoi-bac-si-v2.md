@@ -3,11 +3,11 @@
 - ID / phiên bản: PR03 v2, dùng từ proto-v3.2 (thay v1)
 - Lý do đổi từ v1: ứng viên nhận xét người bệnh không biết bác sĩ nào giỏi lĩnh vực gì để hỏi cho đúng. v2 thêm đầu ra "chuyen_khoa" (chọn trong danh sách cho sẵn); app dùng nó cùng lĩnh vực của từng bác sĩ để gợi ý bác sĩ phù hợp.
 - Lý do có PR03: need statement đổi kết quả mong muốn thành "rút ngắn thời gian từ lúc có kết quả đến lúc có câu trả lời đáng tin". Khi kho chưa có câu trả lời, người bệnh cần hỏi được bác sĩ một câu rõ ràng; khi kho đã có, cần biết trước khi hỏi lại.
-- Model / cấu hình thực tế: OpenAI Chat Completions, model đặt qua biến `OPENAI_MODEL` (mặc định `gpt-4o-mini`), `response_format` JSON. Model thật: `gpt-4o-mini` (đặt trong `.env`). Lượt chạy ngày 19/10/2026 bị API trả lỗi 429 (tài khoản hết credit), chưa có lượt gọi thành công nào được ghi lại.
+- Model / cấu hình thực tế: Gemini (Google), gọi qua endpoint tương thích OpenAI bằng thư viện `openai`; model đặt qua biến `GEMINI_MODEL` (mặc định `gemini-3.5-flash`), key đặt qua `GEMINI_API_KEY`, `response_format` JSON. Trước đó dùng OpenAI `gpt-4o-mini`; các lượt chạy ngày 19/10/2026 đều bị lỗi 429 (tài khoản hết credit, kể cả sau khi đổi key) nên ngày 19/10/2026 chuyển sang Gemini. Model thật: `gemini-3.5-flash` (`gemini-2.5-flash` báo không còn cho người dùng mới); đã gọi thành công ngày 19/10/2026, kết quả trong `user-testing/findings.md`.
 - Input được phép: lời người bệnh (đã qua `guard.classify_question`; câu khẩn cấp không tới model), một dòng trên phiếu mô phỏng, chỉ mục 11 bài.
 - Giới hạn output: `search.soan_cau_hoi` thay câu nháp bằng mẫu cố định nếu câu nháp rỗng, có số điện thoại, khẳng định bệnh hay trấn an (`guard.check_question`); chỉ giữ id có trong kho; chuyên khoa ngoài danh sách bị bỏ và thay bằng quy tắc theo mã chỉ số. Việc chọn bác sĩ do `search.match_doctors` làm, không do model.
 - Phiên bản prototype sử dụng: proto-v3.2
-- Kết quả thử và hạn chế: chưa có kết quả từ model (xem dòng model). Chạy thử nội bộ ngày 19/10/2026 ở nhánh dự phòng: câu hỏi theo mẫu có đủ tên chỉ số, giá trị, khoảng tham chiếu và cờ; chuyên khoa và bác sĩ gợi ý theo quy tắc mã chỉ số; câu khẩn cấp bị chặn (`user-testing/findings.md`). Chưa thử với người dùng.
+- Kết quả thử và hạn chế: chưa có kết quả từ model (xem dòng model). Chạy thử nội bộ ngày 19/10/2026 ở nhánh dự phòng: câu hỏi theo mẫu có đủ tên chỉ số, giá trị, khoảng tham chiếu và cờ; chuyên khoa và bác sĩ gợi ý theo quy tắc mã chỉ số; câu khẩn cấp bị chặn (`user-testing/findings.md`). Đã dùng trong phiên U01-U03; chưa xác nhận model có trả lời trong các phiên này (xem phiếu U).
 
 App đọc hai khối `text` bên dưới theo thứ tự: khối đầu là system prompt, khối sau là user prompt template.
 

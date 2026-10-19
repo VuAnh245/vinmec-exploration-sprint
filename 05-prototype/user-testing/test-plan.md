@@ -1,6 +1,6 @@
 # Kế hoạch thử người dùng
 
-Trạng thái: ĐÃ CHỐT KẾ HOẠCH CHO PROTO-V3.2, CHƯA THỰC HIỆN. Đề yêu cầu 2-3 người; có thể mời lại người đã phỏng vấn và ghi nhận ảnh hưởng của việc họ đã quen chủ đề.
+Trạng thái: ĐÃ THỰC HIỆN VỚI 3 NGƯỜI NGÀY 19/10/2026 (U01-U03, đều là người đã phỏng vấn). Đề yêu cầu 2-3 người; có thể mời lại người đã phỏng vấn và ghi nhận ảnh hưởng của việc họ đã quen chủ đề.
 
 - Phiên bản prototype: proto-v3.2 (gắn tag `proto-v3.2` trước phiên đầu tiên; phiên sau sửa ghi phiên bản mới)
 - Người thử: người từng nhận kết quả xét nghiệm hoặc chẩn đoán hình ảnh. Cách mời: hỏi lại người tham gia P01-P03 trước (cả ba đã dùng Cộng đồng hỏi đáp bác sĩ trên MyVinmec); ghi trong phiếu U nếu người thử là một người P và ghi ảnh hưởng của việc đã quen chủ đề. Nếu chưa đủ 2-3 người, mời người quen từng nhận kết quả trong 12 tháng gần đây, nhắn hẹn trước một buổi 20 phút, nói rõ đây là bài tập ứng tuyển và không hỏi thông tin sức khỏe.

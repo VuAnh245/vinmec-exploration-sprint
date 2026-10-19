@@ -63,7 +63,7 @@ def load_reports() -> dict[str, dict]:
 
 
 def ask_model(query: str, row: dict | None) -> dict | None:
-    return llm.ask(query, row, CORPUS, get_setting("OPENAI_API_KEY"), get_setting("OPENAI_MODEL"))
+    return llm.ask(query, row, CORPUS, get_setting(llm.KEY_ENV), get_setting(llm.MODEL_ENV))
 
 
 def article_card(item: dict, reason: str = "", section: str = "") -> str:

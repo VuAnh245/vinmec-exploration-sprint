@@ -80,12 +80,12 @@ STORE = Store()
 
 
 def ask_model(query: str, row: dict | None) -> dict | None:
-    return llm.ask(query, row, CORPUS, os.environ.get("OPENAI_API_KEY"), os.environ.get("OPENAI_MODEL"))
+    return llm.ask(query, row, CORPUS, os.environ.get(llm.KEY_ENV), os.environ.get(llm.MODEL_ENV))
 
 
 def ask_draft(words: str, row: dict | None) -> dict | None:
     return llm.ask_draft(words, row, CORPUS, search.specialties(DOCTORS),
-                         os.environ.get("OPENAI_API_KEY"), os.environ.get("OPENAI_MODEL"))
+                         os.environ.get(llm.KEY_ENV), os.environ.get(llm.MODEL_ENV))
 
 
 def search_json(result: dict) -> dict:
@@ -137,7 +137,7 @@ class Handler(SimpleHTTPRequestHandler):
             by_code = {r["ma"]: [i["id"] for i in search.lookup_by_code(r["ma"], CORPUS)]
                        for report in reports for r in report["chi_so"]}
             self.send_json({"bai": CORPUS, "phieu": reports, "theo_chi_so": by_code, "bac_si": DOCTORS,
-                            "co_ai": bool(os.environ.get("OPENAI_API_KEY"))})
+                            "co_ai": bool(os.environ.get(llm.KEY_ENV))})
             return
         if self.path == "/api/vinmec":
             self.send_json(STORE.snapshot())
@@ -193,7 +193,7 @@ def main(port: int = PORT) -> None:
     except OSError:
         print(f"Cổng {port} đang được dùng. Hãy tắt máy chủ cũ (Ctrl + C ở cửa sổ đang chạy) rồi chạy lại.")
         return
-    print(f"Mở http://localhost:{port}  (AI: {'có key' if os.environ.get('OPENAI_API_KEY') else 'chưa có key'})")
+    print(f"Mở http://localhost:{port}  (AI: {'có key' if os.environ.get(llm.KEY_ENV) else 'chưa có key'})")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

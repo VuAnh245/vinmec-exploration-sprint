@@ -1,6 +1,6 @@
 # Prototype: Hỏi đáp kết quả xét nghiệm
 
-Trạng thái: PROTO-V3.2, CHẠY ĐƯỢC TRÊN MÁY, CHƯA THỬ VỚI NGƯỜI DÙNG.
+Trạng thái: PROTO-V3.2, CHẠY ĐƯỢC TRÊN MÁY, ĐÃ THỬ VỚI 3 NGƯỜI (U01-U03).
 
 - Nhu cầu giải quyết: rút ngắn thời gian từ lúc có kết quả đến lúc có câu trả lời đáng tin ([need statement v3](../03-need-statement/need-statement.md), điểm đau ĐĐ2, ĐĐ3, ĐĐ5, ĐĐ6, ĐĐ7, ĐĐ8, ĐĐ10 trong [workflow](../02-journey-map/journey-map.md)). Prototype minh họa bằng chỉ số xét nghiệm; phỏng vấn cho thấy cùng vấn đề với câu hỏi sức khỏe sau khám nói chung.
 - Tác vụ chính: một vòng khép kín gồm ba bước.
@@ -10,7 +10,7 @@ Trạng thái: PROTO-V3.2, CHẠY ĐƯỢC TRÊN MÁY, CHƯA THỬ VỚI NGƯỜ
 - Giao diện: bản mô phỏng điện thoại dựng lại MyVinmec để đặt thiết kế đề xuất vào đúng chỗ người bệnh sẽ gặp. Luôn hiện nhãn "BẢN MÔ PHỎNG · không phải ứng dụng thật"; không dùng ảnh hay logo gốc của Vinmec. Ảnh chụp các kịch bản: [screenshots/](screenshots/).
 - Demo: chạy local theo hướng dẫn bên dưới. Chưa deploy; người chấm chạy local theo hướng dẫn
 - Version hiện tại: proto-v3.2 (chưa gắn tag git; gắn tag trước phiên thử đầu tiên)
-- AI chạy thật hay mô phỏng: chạy thật, gọi OpenAI khi có API key (PR02 tìm, PR03 soạn câu hỏi). Câu hỏi khẩn cấp không gọi model. Không có key: tìm theo từ khóa và soạn câu hỏi theo mẫu.
+- AI chạy thật hay mô phỏng: chạy thật, gọi Gemini (Google) khi có API key (PR02 tìm, PR03 soạn câu hỏi). Câu hỏi khẩn cấp không gọi model. Không có key: tìm theo từ khóa và soạn câu hỏi theo mẫu.
 - Phần chưa tích hợp với MyVinmec: không đọc dữ liệu MyVinmec; phiếu là dữ liệu mô phỏng; kho nguồn chỉ có 11 trang công khai; không có bác sĩ thật nhận câu hỏi; dữ liệu phía Vinmec chỉ nằm trong bộ nhớ máy chủ của phiên chạy; các nút gọi, gửi yêu cầu chỉ hiện thông báo mô phỏng.
 - Đo được ngay trên kho hiện tại: 5/6 chỉ số có cờ trong hai phiếu mô phỏng có bài hiện sẵn (GLU, CHOL, LDL-C, NEUT%, PLT); WBC chưa có bài và đi thẳng tới "Hỏi bác sĩ" (kiểm tra bằng `search.lookup_by_code` ngày 19/10/2026).
 
@@ -46,7 +46,7 @@ pip install -r 05-prototype/app/requirements.txt
 python 05-prototype/app/server.py
 ```
 
-Cả hai giao diện tự nạp `OPENAI_API_KEY` và `OPENAI_MODEL` (mặc định `gpt-4o-mini`) từ file `.env` ở gốc repo nếu có; biến đặt trong terminal được ưu tiên. Không có key thì chế độ đề xuất chỉ hiện kết quả tìm theo từ khóa.
+Cả hai giao diện tự nạp `GEMINI_API_KEY` và `GEMINI_MODEL` (mặc định `gemini-3.5-flash`) từ file `.env` ở gốc repo nếu có; biến đặt trong terminal được ưu tiên. Không có key thì chế độ đề xuất chỉ hiện kết quả tìm theo từ khóa.
 
 Chạy test (không cần API key):
 
@@ -54,7 +54,7 @@ Chạy test (không cần API key):
 python -m pytest 05-prototype/app
 ```
 
-Đã kiểm tra ngày 19/10/2026 trên Windows, Python 3.14.4, streamlit 1.61.1, openai 2.48.0: 61/61 test đạt; máy chủ bản mô phỏng và server Streamlit đều khởi động được; chụp màn hình Chrome headless cho 4 kịch bản hiển thị đúng. Lời gọi OpenAI chưa được chạy thử trong lần kiểm tra này. Không commit API key; `.env` và `.streamlit/secrets.toml` đã nằm trong `.gitignore`.
+Đã kiểm tra ngày 19/10/2026 trên Windows, Python 3.14.4, streamlit 1.61.1, openai 2.48.0: 61/61 test đạt; máy chủ bản mô phỏng và server Streamlit đều khởi động được; chụp màn hình Chrome headless cho 4 kịch bản hiển thị đúng. Lời gọi OpenAI chưa được chạy thử trong lần kiểm tra này. Ngày 19/10/2026 chuyển model từ OpenAI sang Gemini vì tài khoản OpenAI hết credit; app vẫn dùng thư viện `openai`, trỏ tới endpoint tương thích OpenAI của Google. Sau khi đổi: 64/64 test đạt; gọi `gemini-3.5-flash` thành công, bộ 5 từ khóa tìm đúng 5/5. Không commit API key; `.env` và `.streamlit/secrets.toml` đã nằm trong `.gitignore`.
 
 ## Thiết kế và quyết định
 
@@ -79,7 +79,7 @@ python -m pytest 05-prototype/app
 - Bản mô phỏng điện thoại: [index.html](app/mobile/index.html), [app.js](app/mobile/app.js), [style.css](app/mobile/style.css), máy chủ [server.py](app/server.py)
 - Giao diện kỹ thuật: [app.py](app/app.py)
 - Dùng chung: [search.py](app/search.py) (tìm và làm sạch kết quả), [guard.py](app/guard.py) (hai lớp chặn), [llm.py](app/llm.py) (gọi model, nạp `.env`)
-- Test: [test_guard.py](app/test_guard.py), [test_search.py](app/test_search.py), [test_app.py](app/test_app.py), [test_server.py](app/test_server.py)
+- Test: [test_guard.py](app/test_guard.py), [test_search.py](app/test_search.py), [test_app.py](app/test_app.py), [test_server.py](app/test_server.py), [test_llm.py](app/test_llm.py)
 - Kho nguồn: [kho-bai-viet-vinmec.json](nguon-noi-dung/kho-bai-viet-vinmec.json)
 - Dữ liệu mô phỏng: [phiếu 01](mock-data/mock-phieu-ket-qua-01.json), [phiếu 02](mock-data/mock-phieu-ket-qua-02.json)
 - Prompt: [PR02](prompts/PR02-tim-va-dan-nguon-v1.md) và [PR03 v2](prompts/PR03-soan-cau-hoi-bac-si-v2.md) (đang dùng), [PR03 v1](prompts/PR03-soan-cau-hoi-bac-si-v1.md) (proto-v3), [PR01](prompts/PR01-giai-thich-phieu-v1.md) (proto-v1, không còn dùng)
